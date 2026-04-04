@@ -1,11 +1,18 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\AlatModel;
 
 class Home extends BaseController
 {
-    public function index(): string
+    public function index()
     {
-        return view('welcome_message');
+        $alatModel = new AlatModel();
+        $data = [
+            'title' => 'Katalog Alat Multimedia',
+            'alat' => $alatModel->getAlatWithKategori()
+        ];
+        
+        return view('public/index', $data);
     }
 }
