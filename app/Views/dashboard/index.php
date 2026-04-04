@@ -1,22 +1,29 @@
-<h2>Dashboard</h2>
-<hr>
-<div class="row mt-4">
-    <div class="col-md-4">
-        <div class="card bg-primary text-white p-3">
-            <h5>Total Alat Multimedia</h5>
-            <h2><?= $total_alat ?></h2>
+<div class="row">
+    <div class="col-lg-4 col-12">
+        <div class="small-box text-bg-primary">
+            <div class="inner">
+                <h3><?= $total_alat ?></h3>
+                <p>Total Alat Multimedia</p>
+            </div>
+            <i class="small-box-icon bi bi-camera"></i>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card bg-success text-white p-3">
-            <h5>Total Penyewa Terdaftar</h5>
-            <h2><?= $total_penyewa ?></h2>
+    <div class="col-lg-4 col-12">
+        <div class="small-box text-bg-success">
+            <div class="inner">
+                <h3><?= $total_penyewa ?></h3>
+                <p>Total Penyewa Terdaftar</p>
+            </div>
+            <i class="small-box-icon bi bi-people"></i>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card bg-warning text-dark p-3">
-            <h5>Total Transaksi</h5>
-            <h2><?= $total_transaksi ?></h2>
+    <div class="col-lg-4 col-12">
+        <div class="small-box text-bg-warning">
+            <div class="inner">
+                <h3><?= $total_transaksi ?></h3>
+                <p>Total Transaksi</p>
+            </div>
+            <i class="small-box-icon bi bi-cart"></i>
         </div>
     </div>
 </div>
