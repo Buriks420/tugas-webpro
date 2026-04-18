@@ -6,7 +6,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    // Visitor Chart Configuration (Requires database integration for dynamic data)
     const visitorCtx = document.getElementById('visitorChart').getContext('2d');
     new Chart(visitorCtx, {
         type: 'line',
@@ -23,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function() {
         options: { responsive: true, maintainAspectRatio: false }
     });
 
-    // Sales/Rental Chart Configuration (Requires database integration for dynamic data)
     const salesCtx = document.getElementById('salesChart').getContext('2d');
     new Chart(salesCtx, {
         type: 'bar',
