@@ -15,7 +15,7 @@
     }
 
     .small-box.text-bg-primary {
-        background: linear-gradient(135deg, #0ea5e9, #4f46e5) !important;
+        background: linear-gradient(135deg, #f97316, #ea580c) !important;
         color: white !important;
     }
 
@@ -25,7 +25,7 @@
     }
 
     .small-box.text-bg-warning {
-        background: linear-gradient(135deg, #f59e0b, #ea580c) !important;
+        background: linear-gradient(135deg, #eab308, #ca8a04) !important;
         color: white !important;
     }
 
@@ -60,7 +60,7 @@
     }
 
     .card-outline.card-primary {
-        border-top: 4px solid #0ea5e9;
+        border-top: 4px solid #f97316;
     }
 
     .card-outline.card-success {
@@ -68,7 +68,7 @@
     }
 
     .card-outline.card-info {
-        border-top: 4px solid #6366f1;
+        border-top: 4px solid #ea580c;
     }
 
     .table thead th {
@@ -140,7 +140,7 @@
     <div class="col-md-6">
         <div class="card card-primary card-outline">
             <div class="card-header d-flex align-items-center">
-                <i class="bi bi-graph-up text-primary me-2 fs-5"></i>
+                <i class="bi bi-graph-up text-warning me-2 fs-5" style="color:#f97316 !important;"></i>
                 <h3 class="card-title m-0">Statistik Pengunjung</h3>
             </div>
             <div class="card-body">
@@ -167,7 +167,7 @@
     <div class="col-12">
         <div class="card card-info card-outline">
             <div class="card-header d-flex align-items-center">
-                <i class="bi bi-clock-history text-info me-2 fs-5"></i>
+                <i class="bi bi-clock-history me-2 fs-5" style="color:#ea580c;"></i>
                 <h3 class="card-title m-0">Transaksi Terbaru</h3>
             </div>
             <div class="card-body table-responsive p-0">
@@ -194,7 +194,7 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div class="bg-light rounded p-2 me-2">
-                                                <i class="bi bi-box-seam text-primary"></i>
+                                                <i class="bi bi-box-seam" style="color:#f97316;"></i>
                                             </div>
                                             <?= $rt['nama_alat'] ?>
                                         </div>

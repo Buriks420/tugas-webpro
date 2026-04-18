@@ -585,6 +585,7 @@
                                         <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20menyewa%20<?= urlencode($item['nama_alat']) ?>" class="mega-item text-decoration-none" target="_blank">
                                             <img src="/uploads/<?= esc($item['foto']) ?>" alt="<?= esc($item['nama_alat']) ?>" onerror="this.src='https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=200'">
                                             <span class="mega-item-name"><?= esc($item['nama_alat']) ?></span>
+                                            <span class="text-primary fw-bold text-center mt-1" style="font-size:0.85rem;">Rp <?= number_format(isset($item['harga']) ? $item['harga'] : 0, 0, ',', '.') ?></span>
                                         </a>
                                     <?php endforeach; ?>
                                 </div>
@@ -654,12 +655,45 @@
                                 <span class="product-badge badge-sale" style="<?= in_array('hot', $tags) ? 'top: 45px;' : 'top: 15px;' ?>">SALE</span>
                             <?php endif; ?>
 
-                            <div class="product-img">
-                                <img src="/uploads/<?= esc($a['foto']) ?>" alt="<?= esc($a['nama_alat']) ?>" onerror="this.src='https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=400'">
+                            <div class="product-img p-0 position-relative">
+                                <?php 
+                                    $additionalFotos = !empty($a['foto_lainnya']) ? json_decode($a['foto_lainnya'], true) : [];
+                                    if(empty($additionalFotos)): 
+                                ?>
+                                    <div style="padding: 20px; height: 220px; display: flex; align-items: center; justify-content: center; width: 100%;">
+                                        <img src="/uploads/<?= esc($a['foto']) ?>" alt="<?= esc($a['nama_alat']) ?>" onerror="this.src='https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=400'" style="max-height: 180px; max-width: 100%; object-fit: contain;">
+                                    </div>
+                                <?php else: 
+                                    $carouselId = 'carousel-' . $a['id_alat'];
+                                ?>
+                                    <div id="<?= $carouselId ?>" class="carousel slide" data-bs-ride="carousel" style="width: 100%;">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <div style="padding: 20px; height: 220px; display: flex; align-items: center; justify-content: center;">
+                                                    <img src="/uploads/<?= esc($a['foto']) ?>" alt="<?= esc($a['nama_alat']) ?>" style="max-height: 180px; max-width: 100%; object-fit: contain;">
+                                                </div>
+                                            </div>
+                                            <?php foreach($additionalFotos as $af): ?>
+                                            <div class="carousel-item">
+                                                <div style="padding: 20px; height: 220px; display: flex; align-items: center; justify-content: center;">
+                                                    <img src="/uploads/<?= esc($af) ?>" alt="<?= esc($a['nama_alat']) ?>" style="max-height: 180px; max-width: 100%; object-fit: contain;">
+                                                </div>
+                                            </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#<?= $carouselId ?>" data-bs-slide="prev" style="width: 15%; border-radius: 0;">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(1) grayscale(100); opacity: 0.8;"></span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#<?= $carouselId ?>" data-bs-slide="next" style="width: 15%; border-radius: 0;">
+                                            <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(1) grayscale(100); opacity: 0.8;"></span>
+                                        </button>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                             <div class="product-info">
                                 <h3 class="product-title"><?= esc($a['nama_alat']) ?></h3>
-                                <p class="text-muted small mb-3"><?= esc($a['nama_kategori']) ?></p>
+                                <p class="text-muted small mb-1"><?= esc($a['nama_kategori']) ?></p>
+                                <h5 class="mb-3 fw-bold" style="color: var(--primary-color);">Rp <?= number_format(isset($a['harga']) ? $a['harga'] : 0, 0, ',', '.') ?></h5>
                                 <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20menyewa%20<?= urlencode($a['nama_alat']) ?>" target="_blank" class="btn btn-outline-dark btn-sm text-uppercase px-4 rounded-0 fw-bold w-100">Inquire Now</a>
                             </div>
                         </div>

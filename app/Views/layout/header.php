@@ -13,7 +13,7 @@
             background-color: #f8fafc;
         }
         .app-sidebar {
-            background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 100%) !important;
+            background: linear-gradient(180deg, #1c1917 0%, #292524 100%) !important;
             border-right: 1px solid rgba(255,255,255,0.05);
         }
         .sidebar-brand {
@@ -35,13 +35,13 @@
             margin: 0 10px;
         }
         .sidebar-menu .nav-link:hover {
-            background-color: rgba(14, 165, 233, 0.15) !important;
-            color: #0ea5e9 !important;
+            background-color: rgba(249, 115, 22, 0.15) !important;
+            color: #f97316 !important;
         }
         .sidebar-menu .nav-link.active {
-            background: linear-gradient(135deg, #0ea5e9, #4f46e5) !important;
+            background: linear-gradient(135deg, #f97316, #ea580c) !important;
             color: #fff !important;
-            box-shadow: 0 4px 10px rgba(14, 165, 233, 0.3);
+            box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3);
         }
         .sidebar-menu .nav-link.text-danger {
             color: #ef4444 !important;

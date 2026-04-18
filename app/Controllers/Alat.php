@@ -49,11 +49,26 @@ class Alat extends BaseController
         
         $tags = $this->request->getVar('tags') ? implode(',', $this->request->getVar('tags')) : '';
 
+        $fotoLainnyaPaths = [];
+        if ($files = $this->request->getFiles()) {
+            if (isset($files['foto_lainnya'])) {
+                foreach($files['foto_lainnya'] as $file) {
+                    if ($file->isValid() && ! $file->hasMoved()) {
+                        $newName = $file->getRandomName();
+                        $file->move('uploads', $newName);
+                        $fotoLainnyaPaths[] = $newName;
+                    }
+                }
+            }
+        }
+
         $this->alatModel->save([
             'nama_alat' => $this->request->getVar('nama_alat'),
             'id_kategori' => $this->request->getVar('id_kategori'),
+            'harga' => $this->request->getVar('harga') ?: 0,
             'deskripsi' => $this->request->getVar('deskripsi'),
             'foto' => $namaFoto,
+            'foto_lainnya' => json_encode($fotoLainnyaPaths),
             'tags' => $tags
         ]);
 
@@ -88,11 +103,26 @@ class Alat extends BaseController
         
         $tags = $this->request->getVar('tags') ? implode(',', $this->request->getVar('tags')) : '';
 
+        $fotoLainnyaPaths = !empty($alatLama['foto_lainnya']) ? json_decode($alatLama['foto_lainnya'], true) : [];
+        if ($files = $this->request->getFiles()) {
+            if (isset($files['foto_lainnya'])) {
+                foreach($files['foto_lainnya'] as $file) {
+                    if ($file->isValid() && ! $file->hasMoved()) {
+                        $newName = $file->getRandomName();
+                        $file->move('uploads', $newName);
+                        $fotoLainnyaPaths[] = $newName;
+                    }
+                }
+            }
+        }
+
         $this->alatModel->update($id, [
             'nama_alat' => $this->request->getVar('nama_alat'),
             'id_kategori' => $this->request->getVar('id_kategori'),
+            'harga' => $this->request->getVar('harga') ?: 0,
             'deskripsi' => $this->request->getVar('deskripsi'),
             'foto' => $namaFoto,
+            'foto_lainnya' => json_encode($fotoLainnyaPaths),
             'tags' => $tags
         ]);
         return redirect()->to('/alat');

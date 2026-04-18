@@ -1,29 +1,55 @@
 <h2>Edit Alat Multimedia</h2>
-<form action="/alat/update/<?= $alat['id_alat'] ?>" method="post" enctype="multipart/form-data" class="w-50">
-    <div class="mb-3">
-        <label>Nama Alat</label>
-        <input type="text" name="nama_alat" class="form-control" value="<?= esc($alat['nama_alat']) ?>" required>
+<form action="/alat/update/<?= $alat['id_alat'] ?>" method="post" enctype="multipart/form-data" class="w-75">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label>Nama Alat</label>
+            <input type="text" name="nama_alat" class="form-control" value="<?= esc($alat['nama_alat']) ?>" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Kategori</label>
+            <select name="id_kategori" class="form-select" required>
+                <?php foreach($kategori as $k): ?>
+                    <option value="<?= $k['id_kategori'] ?>" <?= $k['id_kategori'] == $alat['id_kategori'] ? 'selected' : '' ?>><?= esc($k['nama_kategori']) ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
     </div>
+    
     <div class="mb-3">
-        <label>Kategori</label>
-        <select name="id_kategori" class="form-select" required>
-            <?php foreach($kategori as $k): ?>
-                <option value="<?= $k['id_kategori'] ?>" <?= $k['id_kategori'] == $alat['id_kategori'] ? 'selected' : '' ?>><?= esc($k['nama_kategori']) ?></option>
-            <?php endforeach; ?>
-        </select>
+        <label>Harga Sewa (Rp)</label>
+        <input type="number" name="harga" class="form-control" value="<?= isset($alat['harga']) ? esc($alat['harga']) : '0' ?>" required>
     </div>
+
     <div class="mb-3">
         <label>Deskripsi</label>
-        <textarea name="deskripsi" class="form-control" rows="4"><?= esc($alat['deskripsi']) ?></textarea>
+        <textarea name="deskripsi" class="form-control summernote" rows="4"><?= htmlspecialchars($alat['deskripsi']) ?></textarea>
     </div>
-    <div class="mb-3">
-        <label>Foto Saat Ini</label><br>
-        <img src="/uploads/<?= esc($alat['foto']) ?>" width="150" class="mb-2 rounded shadow-sm">
+    
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label>Foto Saat Ini</label><br>
+            <img src="/uploads/<?= esc($alat['foto']) ?>" width="150" class="mb-2 rounded shadow-sm"><br>
+            <label>Ganti Foto Utama</label>
+            <input type="file" name="foto" class="form-control" accept="image/*">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Foto Tambahan Saat Ini</label><br>
+            <div class="d-flex flex-wrap gap-2 mb-2">
+                <?php 
+                $fotoLainnya = !empty($alat['foto_lainnya']) ? json_decode($alat['foto_lainnya'], true) : [];
+                if(!empty($fotoLainnya)):
+                    foreach($fotoLainnya as $fl): ?>
+                        <img src="/uploads/<?= esc($fl) ?>" width="80" class="rounded shadow-sm">
+                    <?php endforeach; 
+                else: ?>
+                    <span class="text-muted small">Belum ada foto tambahan.</span>
+                <?php endif; ?>
+            </div>
+            <label>Tambah Foto Tambahan (Akan ditambahkan ke yang sudah ada)</label>
+            <input type="file" name="foto_lainnya[]" class="form-control" multiple accept="image/*">
+        </div>
     </div>
-    <div class="mb-3">
-        <label>Ganti Foto Alat (Kosongkan jika tidak ingin diubah)</label>
-        <input type="file" name="foto" class="form-control">
-    </div>
+
     <div class="mb-4">
         <label class="d-block mb-2">Tags (Opsional)</label>
         <?php $currentTags = isset($alat['tags']) ? explode(',', $alat['tags']) : []; ?>
@@ -43,3 +69,19 @@
     <button type="submit" class="btn btn-primary">Update</button>
     <a href="/alat" class="btn btn-secondary">Batal</a>
 </form>
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script>
+  $(document).ready(function() {
+      $('.summernote').summernote({
+          height: 200,
+          toolbar: [
+              ['style', ['bold', 'italic', 'underline', 'clear']],
+              ['para', ['ul', 'ol', 'paragraph']],
+              ['view', ['fullscreen', 'codeview']]
+          ]
+      });
+  });
+</script>

@@ -10,7 +10,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0ea5e9 0%, #1e1b4b 100%);
+            background: linear-gradient(135deg, #f97316 0%, #431407 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -27,7 +27,7 @@
             width: 500px;
             height: 500px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(56,189,248,0.4) 0%, rgba(255,255,255,0) 70%);
+            background: radial-gradient(circle, rgba(249,115,22,0.4) 0%, rgba(255,255,255,0) 70%);
             z-index: 0;
             pointer-events: none;
         }
@@ -40,7 +40,7 @@
         body::after {
             bottom: -150px;
             right: -150px;
-            background: radial-gradient(circle, rgba(99,102,241,0.4) 0%, rgba(255,255,255,0) 70%);
+            background: radial-gradient(circle, rgba(234,88,12,0.4) 0%, rgba(255,255,255,0) 70%);
         }
 
         .login-card {
@@ -61,7 +61,7 @@
         }
 
         .login-header .icon-bg {
-            background: linear-gradient(135deg, #0ea5e9, #4f46e5);
+            background: linear-gradient(135deg, #f97316, #ea580c);
             color: white;
             width: 70px;
             height: 70px;
@@ -71,7 +71,7 @@
             justify-content: center;
             font-size: 32px;
             margin: 0 auto 20px;
-            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.4);
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4);
             transform: rotate(-10deg);
             transition: transform 0.3s ease;
         }
@@ -104,8 +104,8 @@
         }
 
         .form-floating > .form-control:focus {
-            border-color: #0ea5e9;
-            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.15);
+            border-color: #f97316;
+            box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.15);
         }
 
         .form-floating > label {
@@ -127,11 +127,11 @@
         .form-control:focus ~ .input-icon,
         .form-control:focus-within + .input-icon,
         .position-relative:focus-within .input-icon {
-            color: #0ea5e9;
+            color: #f97316;
         }
 
         .btn-login {
-            background: linear-gradient(135deg, #0ea5e9, #4f46e5);
+            background: linear-gradient(135deg, #f97316, #ea580c);
             border: none;
             border-radius: 14px;
             padding: 14px;
@@ -144,8 +144,8 @@
 
         .btn-login:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 25px rgba(79, 70, 229, 0.3);
-            background: linear-gradient(135deg, #0284c7, #4338ca);
+            box-shadow: 0 15px 25px rgba(234, 88, 12, 0.3);
+            background: linear-gradient(135deg, #ea580c, #c2410c);
         }
         
         .back-home {
@@ -162,7 +162,7 @@
         }
         
         .back-home a:hover {
-            color: #0ea5e9;
+            color: #f97316;
         }
     </style>
 </head>
