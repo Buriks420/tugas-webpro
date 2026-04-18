@@ -167,33 +167,43 @@
     </style>
 </head>
 <body>
-        <div class="login-card p-5">
+        <div class="login-card p-5" style="margin-top: 50px; margin-bottom: 50px;">
             <div class="login-header text-center">
                 <div class="icon-bg">
-                    <i class="bi bi-person-circle"></i>
+                    <i class="bi bi-person-plus"></i>
                 </div>
-                <h4 class="fw-bold mb-1">LOGIN</h4>
-                <p class="text-muted small">Welcome back! Please login to your account.</p>
+                <h4 class="fw-bold mb-1">REGISTER</h4>
+                <p class="text-muted small">Create your account to start renting</p>
             </div>
 
-            <?php if(session()->getFlashdata('msg')):?>
+            <?php if(session()->getFlashdata('validation')):?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <i class="bi bi-exclamation-triangle-fill me-2"></i><?= session()->getFlashdata('msg') ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            <?php endif;?>
-            <?php if(session()->getFlashdata('success')):?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <i class="bi bi-check-circle-fill me-2"></i><?= session()->getFlashdata('success') ?>
+                    <ul class="mb-0 ps-3">
+                    <?php foreach (session()->getFlashdata('validation') as $error) : ?>
+                        <li><?= esc($error) ?></li>
+                    <?php endforeach ?>
+                    </ul>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             <?php endif;?>
 
-            <form action="/auth/login" method="post">
+            <form action="/auth/processRegister" method="post">
                 <div class="form-floating mb-4 position-relative">
-                    <input type="text" name="username" class="form-control" id="username" placeholder="Username / Email" required>
-                    <label for="username">Username / Email</label>
+                    <input type="text" name="nama_lengkap" class="form-control" id="nama_lengkap" placeholder="Nama Lengkap" value="<?= old('nama_lengkap') ?>" required>
+                    <label for="nama_lengkap">Full Name</label>
+                    <i class="bi bi-person-badge input-icon"></i>
+                </div>
+
+                <div class="form-floating mb-4 position-relative">
+                    <input type="text" name="username" class="form-control" id="username" placeholder="Username" value="<?= old('username') ?>" required>
+                    <label for="username">Username</label>
                     <i class="bi bi-person input-icon"></i>
+                </div>
+                
+                <div class="form-floating mb-4 position-relative">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Email Address" value="<?= old('email') ?>" required>
+                    <label for="email">Email Address</label>
+                    <i class="bi bi-envelope input-icon"></i>
                 </div>
                 
                 <div class="form-floating mb-4 position-relative">
@@ -201,14 +211,20 @@
                     <label for="password">Password</label>
                     <i class="bi bi-lock input-icon"></i>
                 </div>
+                
+                <div class="form-floating mb-4 position-relative">
+                    <input type="password" name="pass_confirm" class="form-control" id="pass_confirm" placeholder="Confirm Password" required>
+                    <label for="pass_confirm">Confirm Password</label>
+                    <i class="bi bi-lock-fill input-icon"></i>
+                </div>
 
                 <button type="submit" class="btn btn-login w-100 mb-3">
-                    <i class="bi bi-box-arrow-in-right me-2"></i>Login
+                    <i class="bi bi-person-plus-fill me-2"></i>Create Account
                 </button>
             </form>
             
             <div class="text-center mt-3 back-home">
-                <p class="mb-1 text-muted small">Don't have an account? <a href="/auth/register" class="fw-bold">Register Here</a></p>
+                <p class="mb-1 text-muted small">Already have an account? <a href="/auth" class="fw-bold">Login Here</a></p>
                 <a href="/"><i class="bi bi-arrow-left me-1"></i>Back to Homepage</a>
             </div>
         </div>

@@ -547,9 +547,30 @@
                 <a href="#about">ABOUT US</a>
                 <a href="#contact">CONTACT US</a>
             </div>
-            <div class="nav-right d-flex align-items-center">
-                <a href="/auth"><i class="bi bi-person me-2 fs-5"></i> ADMIN LOGIN</a>
-                <a href="#company" class="btn-profile d-none d-lg-block">COMPANY PROFILE</a>
+            <div class="top-nav-right d-flex align-items-center">
+                <?php if(session()->get('logged_in')): ?>
+                    <?php if(session()->get('is_admin')): ?>
+                        <a href="/dashboard" class="me-4 text-decoration-none text-dark" title="Dashboard">
+                            <i class="bi bi-grid-fill fs-5" style="color: var(--primary-color);"></i>
+                        </a>
+                    <?php endif; ?>
+                    
+                    <div class="dropdown">
+                        <a href="#" class="d-flex align-items-center text-decoration-none" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://www.gravatar.com/avatar/<?= md5(strtolower(trim(session()->get('email') ?? ''))) ?>?s=40&d=mp" alt="User Avatar" class="rounded-circle me-2" style="width: 35px; height: 35px; object-fit: cover; border: 2px solid var(--primary-color); box-shadow: 0 2px 5px rgba(249,115,22,0.2);">
+                            <span class="text-dark fw-bold d-none d-md-inline" style="font-size:0.9rem;"><?= esc(session()->get('username')) ?></span>
+                            <i class="bi bi-chevron-down ms-2 text-muted" style="font-size:0.7rem;"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2 rounded-3" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item py-2" href="/auth/profile"><i class="bi bi-person me-2 text-muted"></i> My Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item py-2 text-danger" href="/auth/logout"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                <?php else: ?>
+                    <a href="/auth" class="text-decoration-none text-dark fw-bold hover-primary" style="font-size:0.9rem; transition: color 0.2s;"><i class="bi bi-person me-1 fs-5 align-middle"></i> LOGIN / REGISTER</a>
+                <?php endif; ?>
+                <a href="#" class="btn-primary-custom ms-4">COMPANY PROFILE</a>
             </div>
         </div>
     </div>
