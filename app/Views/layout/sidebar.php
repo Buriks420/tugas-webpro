@@ -1,4 +1,4 @@
-<aside class="app-sidebar bg-body-secondary shadow-sm" data-bs-theme="dark">
+<aside class="app-sidebar shadow-sm" data-bs-theme="dark">
         <div class="sidebar-brand">
             <a href="/dashboard" class="brand-link">
                 <span class="brand-text fw-light">Admin Panel</span>
