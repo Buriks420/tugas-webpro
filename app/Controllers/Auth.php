@@ -36,6 +36,7 @@ class Auth extends BaseController
                     'email' => $user['email'],
                     'nama_lengkap' => $user['nama_lengkap'],
                     'is_admin' => $user['is_admin'],
+                    'avatar' => $user['avatar'],
                     'logged_in' => TRUE
                 ];
                 $session->set($ses_data);
@@ -137,12 +138,23 @@ class Auth extends BaseController
             $updateData['password'] = password_hash($this->request->getVar('password'), PASSWORD_DEFAULT);
         }
 
+        $avatarFile = $this->request->getFile('avatar');
+        if ($avatarFile && $avatarFile->isValid() && !$avatarFile->hasMoved()) {
+            $newName = $avatarFile->getRandomName();
+            $avatarFile->move('uploads/avatars', $newName);
+            $updateData['avatar'] = $newName;
+        }
+
         $userModel->update($id, $updateData);
+        
+        // Fetch fresh user data to update session completely
+        $freshUser = $userModel->find($id);
         
         // Update session
         $session->set([
-            'email' => $updateData['email'],
-            'nama_lengkap' => $updateData['nama_lengkap']
+            'email' => $freshUser['email'],
+            'nama_lengkap' => $freshUser['nama_lengkap'],
+            'avatar' => $freshUser['avatar']
         ]);
 
         $session->setFlashdata('success', 'Profil berhasil diupdate!');

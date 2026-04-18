@@ -35,6 +35,25 @@
             overflow: hidden;
             border: 4px solid white;
             box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .avatar-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .profile-header .avatar-container:hover .avatar-overlay {
+            opacity: 1;
         }
 
         .profile-header .avatar-container img {
@@ -52,6 +71,10 @@
         .form-floating > .form-control:focus {
             border-color: #f97316;
             box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.15);
+        }
+
+        .form-floating > label {
+            padding-left: 45px !important;
         }
 
         .input-icon {
@@ -85,16 +108,27 @@
 </head>
 <body>
     <div class="profile-card p-5">
-        <div class="profile-header text-center mb-4">
-            <div class="avatar-container">
-                <img src="https://www.gravatar.com/avatar/<?= md5(strtolower(trim($user['email']))) ?>?s=200&d=mp" alt="Avatar">
+        <form action="/auth/updateProfile" method="post" enctype="multipart/form-data">
+            <div class="profile-header text-center mb-4">
+                <label for="avatarInput" class="avatar-container d-block mx-auto mb-2" title="Click to change profile picture">
+                    <?php if(!empty($user['avatar'])): ?>
+                        <img src="/uploads/avatars/<?= esc($user['avatar']) ?>" alt="Avatar" id="avatarPreview">
+                    <?php else: ?>
+                        <img src="https://www.gravatar.com/avatar/<?= md5(strtolower(trim($user['email']))) ?>?s=200&d=mp" alt="Avatar" id="avatarPreview">
+                    <?php endif; ?>
+                    <div class="avatar-overlay">
+                        <i class="bi bi-camera-fill fs-4"></i>
+                        <span style="font-size: 10px;">Change</span>
+                    </div>
+                </label>
+                <input type="file" name="avatar" id="avatarInput" class="d-none" accept="image/*" onchange="previewImage(this)">
+                
+                <h4 class="fw-bold mb-1"><?= esc($user['nama_lengkap']) ?></h4>
+                <p class="text-muted small">Update your profile information</p>
+                <p class="text-muted" style="font-size:0.8rem;">Note: Upload an image or use Gravatar</p>
             </div>
-            <h4 class="fw-bold mb-1"><?= esc($user['nama_lengkap']) ?></h4>
-            <p class="text-muted small">Update your profile information</p>
-            <p class="text-muted" style="font-size:0.8rem;">Note: Avatar is synced via Gravatar</p>
-        </div>
 
-        <?php if(session()->getFlashdata('validation')):?>
+            <?php if(session()->getFlashdata('validation')):?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <ul class="mb-0 ps-3">
                 <?php foreach (session()->getFlashdata('validation') as $error) : ?>
@@ -112,10 +146,9 @@
             </div>
         <?php endif;?>
 
-        <form action="/auth/updateProfile" method="post">
             <div class="form-floating mb-4 position-relative">
-                <input type="text" name="nama_lengkap" class="form-control" id="nama_lengkap" placeholder="Nama Lengkap" value="<?= esc($user['nama_lengkap']) ?>" required>
-                <label for="nama_lengkap">Full Name</label>
+                <input type="text" name="nama_lengkap" class="form-control" id="nama_lengkap" placeholder="First & Last Name" value="<?= esc($user['nama_lengkap']) ?>" required>
+                <label for="nama_lengkap">First & Last Name</label>
                 <i class="bi bi-person-badge input-icon"></i>
             </div>
             
@@ -147,5 +180,16 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('avatarPreview').src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 </body>
 </html>

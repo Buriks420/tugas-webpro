@@ -14,9 +14,33 @@ class Penyewa extends BaseController
 
     public function index()
     {
+        $userModel = new \App\Models\UserModel();
+        $renters = $this->penyewaModel->findAll();
+        $users = $userModel->where('is_admin', 0)->findAll();
+
+        $pengguna = [];
+        foreach($renters as $r) {
+            $pengguna[] = [
+                'tipe' => 'Penyewa',
+                'id' => $r['id_penyewa'],
+                'nama' => $r['nama_penyewa'],
+                'kontak' => $r['kontak'],
+                'info' => $r['alamat']
+            ];
+        }
+        foreach($users as $u) {
+            $pengguna[] = [
+                'tipe' => 'User Register',
+                'id' => $u['id'],
+                'nama' => $u['nama_lengkap'],
+                'kontak' => $u['email'],
+                'info' => 'Username: ' . $u['username']
+            ];
+        }
+
         $data = [
-            'title' => 'Data Penyewa',
-            'penyewa' => $this->penyewaModel->findAll()
+            'title' => 'Data Pengguna',
+            'pengguna' => $pengguna
         ];
 
         echo view('layout/header', $data);

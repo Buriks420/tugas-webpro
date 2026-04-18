@@ -12,11 +12,9 @@
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #f97316 0%, #431407 100%);
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 50px 0;
             position: relative;
-            overflow: hidden;
+            overflow-x: hidden;
             margin: 0;
         }
 
@@ -50,6 +48,7 @@
             padding: 45px 40px;
             width: 100%;
             max-width: 420px;
+            margin: 0 auto;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.3);
             z-index: 1;
