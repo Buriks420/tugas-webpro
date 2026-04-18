@@ -6,6 +6,7 @@
     <title><?= esc($title) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
     <style>
         :root {
             --primary-color: #0ea5e9;
@@ -294,21 +295,21 @@
         <div class="row g-4">
             <div class="col-md-4">
                 <div class="feature-item">
-                    <div class="feature-icon">🛡️</div>
+                    <div class="feature-icon text-primary"><span class="material-symbols-outlined" style="font-size: inherit;">verified_user</span></div>
                     <h3 class="feature-title">Peralatan Terawat</h3>
                     <p class="feature-desc">Semua unit alat multimedia dan AV kami dipelihara secara rutin dan selalu dalam kondisi prima sebelum disewakan.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="feature-item">
-                    <div class="feature-icon">👨‍🔧</div>
+                    <div class="feature-icon text-primary"><span class="material-symbols-outlined" style="font-size: inherit;">engineering</span></div>
                     <h3 class="feature-title">Dukungan Teknisi</h3>
                     <p class="feature-desc">Teknisi berpengalaman kami siap membantu instalasi dan standby selama event Anda berlangsung.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="feature-item">
-                    <div class="feature-icon">🚚</div>
+                    <div class="feature-icon text-primary"><span class="material-symbols-outlined" style="font-size: inherit;">local_shipping</span></div>
                     <h3 class="feature-title">Pengiriman Cepat</h3>
                     <p class="feature-desc">Layanan pengantaran dan penjemputan alat ke lokasi acara agar aman dan tepat waktu.</p>
                 </div>
