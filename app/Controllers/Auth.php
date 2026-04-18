@@ -8,7 +8,7 @@ class Auth extends BaseController
     public function index()
     {
         if (session()->get('logged_in')) {
-            return redirect()->to(session()->get('is_admin') ? '/dashboard' : '/');
+            return redirect()->to('/');
         }
         echo view('auth/login');
     }
@@ -40,12 +40,7 @@ class Auth extends BaseController
                 ];
                 $session->set($ses_data);
                 
-                // Redirect based on role
-                if ($user['is_admin'] == 1) {
-                    return redirect()->to('/dashboard');
-                } else {
-                    return redirect()->to('/');
-                }
+                return redirect()->to('/');
             } else {
                 $session->setFlashdata('msg', 'Password salah');
                 return redirect()->to('/auth');
@@ -59,7 +54,7 @@ class Auth extends BaseController
     public function register()
     {
         if (session()->get('logged_in')) {
-            return redirect()->to(session()->get('is_admin') ? '/dashboard' : '/');
+            return redirect()->to('/');
         }
         echo view('auth/register');
     }

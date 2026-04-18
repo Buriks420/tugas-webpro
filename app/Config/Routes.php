@@ -9,6 +9,10 @@ $routes->get('/', 'Home::index');
 $routes->get('/auth', 'Auth::index');
 $routes->post('/auth/login', 'Auth::login');
 $routes->get('/auth/logout', 'Auth::logout');
+$routes->get('/auth/register', 'Auth::register');
+$routes->post('/auth/processRegister', 'Auth::processRegister');
+$routes->get('/auth/profile', 'Auth::profile');
+$routes->post('/auth/updateProfile', 'Auth::updateProfile');
 
 $routes->get('/dashboard', 'Dashboard::index');
 
