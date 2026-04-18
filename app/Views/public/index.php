@@ -9,15 +9,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css">
     <style>
         :root {
-            --primary-color: #4f46e5;      /* Indigo instead of Red */
-            --secondary-color: #4338ca;    /* Darker Indigo */
-            --accent-color: #0ea5e9;       /* Bright Blue */
-            --dark-bg: #1e293b;
-            --text-dark: #334155;
-            --text-light: #64748b;
-            --sidebar-bg: #f8fafc;
-            --body-bg: #f1f5f9;
-            --border-color: #e2e8f0;
+            /* Brand Colors */
+            --primary-color: #f97316;    /* Vibrant Orange (Orange-500) */
+            --secondary-color: #ea580c;  /* Deep Orange (Orange-600) */
+            --accent-color: #f59e0b;     /* Warm Amber for highlights */
+            
+            /* Neutral Surfaces */
+            --dark-bg: #1c1917;          /* Stone-900 (Deep warm charcoal) */
+            --sidebar-bg: #fafaf9;       /* Stone-50 (Very light warm grey) */
+            --body-bg: #f5f5f4;          /* Stone-100 (Soft neutral base) */
+            --border-color: #e7e5e4;     /* Stone-200 (Clean, warm divider) */
+
+            /* Typography */
+            --text-dark: #44403c;        /* Stone-700 (High readability) */
+            --text-light: #78716c;       /* Stone-500 (Subtle secondary text) */
         }
 
         body { 
@@ -152,14 +157,17 @@
             background: #ffffff;
             min-height: calc(100vh - 150px);
             box-shadow: 0 0 20px rgba(0,0,0,0.02);
+            position: relative;
         }
 
-        /* Left Sidebar */
+        /* Left Sidebar & Mega Menu */
         .sidebar {
             width: 280px;
             flex-shrink: 0;
             background: var(--sidebar-bg);
             border-right: 1px solid var(--border-color);
+            position: relative; /* Key for absolute mega menu */
+            z-index: 10;
         }
 
         .sidebar-menu {
@@ -172,7 +180,7 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        .sidebar-menu a {
+        .sidebar-menu a.cat-link {
             display: flex;
             align-items: center;
             padding: 14px 20px;
@@ -184,25 +192,101 @@
             background: transparent;
         }
 
-        .sidebar-menu a i {
+        .sidebar-menu a.cat-link i {
             margin-right: 15px;
-            color: var(--primary-color);
+            color: var(--text-light);
             font-size: 1.1rem;
-            opacity: 0.7;
         }
 
-        .sidebar-menu a:hover {
+        .sidebar-menu li:hover > a.cat-link {
             background: #ffffff;
             color: var(--primary-color);
             padding-left: 25px;
         }
         
-        .sidebar-menu a::after {
+        .sidebar-menu li:hover > a.cat-link i {
+            color: var(--primary-color);
+        }
+        
+        .sidebar-menu a.cat-link::after {
             content: '\F285'; /* bi-chevron-right */
             font-family: 'bootstrap-icons';
             margin-left: auto;
             font-size: 0.8rem;
             opacity: 0.3;
+        }
+
+        /* Mega Menu Content */
+        .mega-menu-content {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            width: 700px;
+            height: 100%;
+            background: #ffffff;
+            box-shadow: 10px 0 30px rgba(0,0,0,0.05);
+            z-index: 100;
+            padding: 30px;
+            border-left: 1px solid var(--border-color);
+            overflow-y: auto;
+            background-image: url('data:image/svg+xml;utf8,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="%23e7e5e4"/></pattern></defs><rect width="100%" height="100%" fill="url(%23dots)"/></svg>');
+        }
+
+        .sidebar-menu li:hover .mega-menu-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mega-menu-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            color: var(--dark-bg);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .mega-menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .mega-item {
+            display: flex;
+            flex-direction: column;
+            background: rgba(255,255,255,0.8);
+            padding: 10px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        
+        .mega-item:hover {
+            background: #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .mega-item img {
+            width: 100%;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .mega-item-name {
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .mega-item:hover .mega-item-name {
+            color: var(--primary-color);
         }
 
         /* Main Content */
@@ -214,13 +298,14 @@
 
         /* Banner Carousel */
         .hero-banner {
-            background: linear-gradient(to right, #f8fafc, #e2e8f0);
+            background: linear-gradient(135deg, var(--body-bg) 0%, #ffffff 100%);
             min-height: 500px;
             position: relative;
             display: flex;
             align-items: center;
             padding: 40px;
             overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .banner-text {
@@ -276,6 +361,7 @@
             display: flex;
             flex-direction: column;
             background: #fff;
+            position: relative; /* For badges */
         }
 
         .product-card:hover {
@@ -284,10 +370,36 @@
             transform: translateY(-5px);
         }
 
+        /* Tag Badges */
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 2;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .badge-hot {
+            background-color: #ef4444; /* Red */
+            color: white;
+        }
+        
+        .badge-sale {
+            background-color: #22c55e; /* Green */
+            color: white;
+            top: 45px; /* offset if multiple */
+        }
+
         .product-img {
             padding: 20px;
             text-align: center;
-            background: #f8fafc;
+            background: var(--body-bg);
             height: 220px;
             display: flex;
             align-items: center;
@@ -332,7 +444,7 @@
         }
 
         .footer-info p {
-            color: #94a3b8;
+            color: var(--text-light);
             margin-bottom: 10px;
             font-size: 0.95rem;
         }
@@ -351,7 +463,7 @@
         }
 
         .footer-nav a {
-            color: #94a3b8;
+            color: var(--text-light);
             text-decoration: none;
             display: block;
             margin-bottom: 10px;
@@ -366,7 +478,7 @@
             border-top: 1px solid rgba(255,255,255,0.1);
             padding-top: 20px;
             margin-top: 40px;
-            color: #64748b;
+            color: var(--text-light);
             font-size: 0.9rem;
             text-align: left;
         }
@@ -405,7 +517,7 @@
         <div class="row align-items-center">
             <div class="col-md-3">
                 <a href="/" class="brand-logo">
-                    <i class="bi bi-camera-reels-fill me-2 text-primary"></i> MS-Rent
+                    <i class="bi bi-layers-fill me-2 text-primary"></i> MS-Rent
                 </a>
             </div>
             <div class="col-md-6">
@@ -415,7 +527,7 @@
                 </div>
             </div>
             <div class="col-md-3 text-end d-none d-md-block">
-                <!-- Additional top header items if needed -->
+                <!-- Additional top header items -->
             </div>
         </div>
     </div>
@@ -448,11 +560,10 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <ul class="sidebar-menu">
-            <?php if(!empty($kategori)): ?>
-                <?php foreach($kategori as $k): ?>
+            <?php if(!empty($kategoriWithAlat)): ?>
+                <?php foreach($kategoriWithAlat as $k): ?>
                     <li>
-                        <a href="#<?= esc($k['id_kategori']) ?>">
-                            <!-- Adding a dynamic icon based on common names, or default to circle -->
+                        <a href="#<?= esc($k['id_kategori']) ?>" class="cat-link">
                             <?php 
                                 $icon = 'bi-record-circle';
                                 $lowerName = strtolower($k['nama_kategori']);
@@ -465,10 +576,26 @@
                             ?>
                             <i class="bi <?= $icon ?>"></i> <?= esc($k['nama_kategori']) ?>
                         </a>
+                        <!-- Mega Menu Panel -->
+                        <div class="mega-menu-content">
+                            <span class="mega-menu-title"><?= esc($k['nama_kategori']) ?></span>
+                            <?php if(!empty($k['items'])): ?>
+                                <div class="mega-menu-grid">
+                                    <?php foreach($k['items'] as $item): ?>
+                                        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20menyewa%20<?= urlencode($item['nama_alat']) ?>" class="mega-item text-decoration-none" target="_blank">
+                                            <img src="/uploads/<?= esc($item['foto']) ?>" alt="<?= esc($item['nama_alat']) ?>" onerror="this.src='https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=200'">
+                                            <span class="mega-item-name"><?= esc($item['nama_alat']) ?></span>
+                                        </a>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php else: ?>
+                                <p class="text-muted">Belum ada item di kategori ini.</p>
+                            <?php endif; ?>
+                        </div>
                     </li>
                 <?php endforeach; ?>
             <?php else: ?>
-                <li><a href="#"><i class="bi bi-info-circle"></i> Kategori Kosong</a></li>
+                <li><a href="#" class="cat-link"><i class="bi bi-info-circle"></i> Kategori Kosong</a></li>
             <?php endif; ?>
         </ul>
     </div>
@@ -478,20 +605,19 @@
         <!-- Banner Carousel -->
         <div class="hero-banner">
             <div class="banner-text">
-                <h1>High Quality Multimedia Equipment</h1>
-                <p>MS-Rent provides various types of professional equipment for your events. Cameras, Sound Systems, Lighting, and others. Ready to deploy across the region.</p>
+                <h1>High Quality Equipment Rentals</h1>
+                <p>MS-Rent provides professional gear for your production and event needs. Featuring our top-tier collections ready to deploy.</p>
                 <div class="mt-4">
                     <span class="badge bg-white text-dark border p-2 me-2 shadow-sm">Kamera</span>
                     <span class="badge bg-white text-dark border p-2 me-2 shadow-sm">Sound System</span>
                     <span class="badge bg-white text-dark border p-2 shadow-sm">Lighting</span>
                 </div>
             </div>
-            <!-- Decorative Graphic / Hero Image Placeholder -->
+            <!-- Decorative Graphic -->
             <div style="position: absolute; right: -50px; top: 50%; transform: translateY(-50%); opacity: 0.8;">
-                 <!-- Abstract geometric shapes mimicking the conveyor belts on Makitech, but abstract -->
                  <svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M50 350 L450 100 L550 150 L150 400 Z" fill="#cbd5e1" opacity="0.5"/>
-                    <path d="M100 350 L500 100 L600 150 L200 400 Z" fill="#94a3b8" opacity="0.3"/>
+                    <path d="M50 350 L450 100 L550 150 L150 400 Z" fill="var(--border-color)" opacity="0.5"/>
+                    <path d="M100 350 L500 100 L600 150 L200 400 Z" fill="var(--text-light)" opacity="0.1"/>
                     <circle cx="450" cy="125" r="40" fill="var(--primary-color)" opacity="0.8"/>
                     <circle cx="350" cy="187" r="40" fill="var(--primary-color)" opacity="0.9"/>
                     <circle cx="250" cy="250" r="40" fill="var(--primary-color)"/>
@@ -504,19 +630,30 @@
             <div class="section-header">
                 <h4>MS-Rent Collections</h4>
                 <h2>Featured Equipment</h2>
-                <p class="text-muted">We provide premium gear for professional productions</p>
+                <p class="text-muted">Explore our highlighted premium gear</p>
             </div>
 
-            <?php if(empty($alat)): ?>
+            <?php if(empty($featuredAlat)): ?>
                 <div class="text-center py-5">
                     <i class="bi bi-box-seam text-muted" style="font-size: 4rem;"></i>
-                    <h4 class="mt-3 text-muted">Belum ada produk yang tersedia.</h4>
+                    <h4 class="mt-3 text-muted">Belum ada produk yang ditampilkan.</h4>
                 </div>
             <?php else: ?>
-                <div class="row g-0">
-                    <?php foreach($alat as $a): ?>
+                <div class="row g-0 border-top border-start border-color">
+                    <?php foreach($featuredAlat as $a): ?>
                     <div class="col-lg-4 col-md-6 border-end border-bottom border-color">
                         <div class="product-card">
+                            
+                            <?php 
+                                $tags = isset($a['tags']) ? explode(',', strtolower($a['tags'])) : [];
+                            ?>
+                            <?php if(in_array('hot', $tags)): ?>
+                                <span class="product-badge badge-hot">HOT</span>
+                            <?php endif; ?>
+                            <?php if(in_array('sale', $tags)): ?>
+                                <span class="product-badge badge-sale" style="<?= in_array('hot', $tags) ? 'top: 45px;' : 'top: 15px;' ?>">SALE</span>
+                            <?php endif; ?>
+
                             <div class="product-img">
                                 <img src="/uploads/<?= esc($a['foto']) ?>" alt="<?= esc($a['nama_alat']) ?>" onerror="this.src='https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=400'">
                             </div>
@@ -540,10 +677,10 @@
         <div class="row">
             <div class="col-lg-5 pe-5">
                 <a href="/" class="footer-logo">
-                    <i class="bi bi-camera-reels-fill text-primary"></i> MS-Rent
+                    <i class="bi bi-layers-fill text-primary"></i> MS-Rent
                 </a>
-                <p style="color: #cbd5e1; line-height: 1.6; margin-bottom: 30px;">
-                    MS-Rent empower the creative, production, and event industries through integrated high-quality multimedia and AV equipment rentals.
+                <p style="line-height: 1.6; margin-bottom: 30px;">
+                    MS-Rent empowers the creative, production, and event industries through integrated high-quality multimedia and AV equipment rentals.
                 </p>
                 <div class="footer-info">
                     <p><i class="bi bi-geo-alt-fill"></i> Kawasan Bisnis Sudirman, Jakarta Selatan 12190</p>
@@ -563,7 +700,7 @@
             <div class="col-lg-4 mt-4 mt-lg-0">
                 <div class="footer-nav">
                     <h5>Categories</h5>
-                    <?php $count=0; foreach($kategori as $k): if($count>=4) break; ?>
+                    <?php $count=0; foreach($kategoriWithAlat as $k): if($count>=4) break; ?>
                         <a href="#"><?= esc($k['nama_kategori']) ?></a>
                     <?php $count++; endforeach; ?>
                 </div>

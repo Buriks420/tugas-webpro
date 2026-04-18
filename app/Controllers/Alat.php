@@ -46,12 +46,15 @@ class Alat extends BaseController
         $fileFoto = $this->request->getFile('foto');
         $namaFoto = $fileFoto->getRandomName();
         $fileFoto->move('uploads', $namaFoto);
+        
+        $tags = $this->request->getVar('tags') ? implode(',', $this->request->getVar('tags')) : '';
 
         $this->alatModel->save([
             'nama_alat' => $this->request->getVar('nama_alat'),
             'id_kategori' => $this->request->getVar('id_kategori'),
             'deskripsi' => $this->request->getVar('deskripsi'),
-            'foto' => $namaFoto
+            'foto' => $namaFoto,
+            'tags' => $tags
         ]);
 
         return redirect()->to('/alat');
@@ -82,12 +85,15 @@ class Alat extends BaseController
             $fileFoto->move('uploads', $namaFoto);
             // Optionally delete old photo: unlink('uploads/' . $alatLama['foto']);
         }
+        
+        $tags = $this->request->getVar('tags') ? implode(',', $this->request->getVar('tags')) : '';
 
         $this->alatModel->update($id, [
             'nama_alat' => $this->request->getVar('nama_alat'),
             'id_kategori' => $this->request->getVar('id_kategori'),
             'deskripsi' => $this->request->getVar('deskripsi'),
-            'foto' => $namaFoto
+            'foto' => $namaFoto,
+            'tags' => $tags
         ]);
         return redirect()->to('/alat');
     }

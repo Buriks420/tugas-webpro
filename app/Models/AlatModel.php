@@ -7,7 +7,7 @@ class AlatModel extends Model
 {
     protected $table = 'alat';
     protected $primaryKey = 'id_alat';
-    protected $allowedFields = ['nama_alat', 'id_kategori', 'deskripsi', 'foto', 'is_hidden'];
+    protected $allowedFields = ['nama_alat', 'id_kategori', 'deskripsi', 'foto', 'is_hidden', 'tags'];
 
     public function getAlatWithKategori($onlyVisible = false)
     {
