@@ -5,355 +5,579 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= esc($title) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css">
     <style>
         :root {
-            --primary-color: #0ea5e9;
-            --secondary-color: #38bdf8;
-            --dark-bg: #0f172a;
-            --card-bg: #ffffff;
-            --text-dark: #1e293b;
+            --primary-color: #4f46e5;      /* Indigo instead of Red */
+            --secondary-color: #4338ca;    /* Darker Indigo */
+            --accent-color: #0ea5e9;       /* Bright Blue */
+            --dark-bg: #1e293b;
+            --text-dark: #334155;
             --text-light: #64748b;
+            --sidebar-bg: #f8fafc;
+            --body-bg: #f1f5f9;
+            --border-color: #e2e8f0;
         }
 
         body { 
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; 
+            background-color: var(--body-bg); 
             color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
 
-        h1, h2, h3, h4, h5, .navbar-brand {
+        h1, h2, h3, h4, h5 {
             font-family: 'Outfit', sans-serif;
             font-weight: 700;
         }
 
-        /* Navbar Styling */
-        .navbar {
-            background-color: rgba(15, 23, 42, 0.95) !important;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+        /* Top Header Area */
+        .top-header {
+            background-color: #ffffff;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
         }
         
-        .navbar-brand {
+        .brand-logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
             font-weight: 800;
-            letter-spacing: -0.5px;
-            color: white !important;
+            color: var(--primary-color);
+            text-decoration: none;
             display: flex;
             align-items: center;
+            letter-spacing: -1px;
         }
 
-        .btn-outline-light {
-            border-radius: 50px;
-            padding: 8px 24px;
-            font-weight: 500;
-            transition: all 0.3s ease;
+        .search-box {
+            position: relative;
         }
-
-        .btn-outline-light:hover {
-            background-color: var(--primary-color);
+        
+        .search-input {
+            border-radius: 0;
+            border: 1px solid var(--border-color);
+            padding: 12px 20px;
+            font-size: 0.95rem;
+            box-shadow: none;
+        }
+        
+        .search-input:focus {
             border-color: var(--primary-color);
+            box-shadow: none;
+        }
+        
+        .search-btn {
+            border-radius: 0;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-left: none;
+            color: var(--text-dark);
+            padding: 0 20px;
+        }
+
+        /* Main Navigation Bar */
+        .main-nav {
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 16px 20px;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 16px 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-right a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            border-left: 1px solid var(--border-color);
+        }
+
+        .nav-right .btn-profile {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 24px;
+            margin-left: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .nav-right .btn-profile:hover {
+            background: var(--secondary-color);
             transform: translateY(-2px);
         }
 
-        /* Hero Section */
-        .hero { 
-            background: linear-gradient(135deg, var(--dark-bg) 0%, #1e1b4b 100%);
-            color: white; 
-            padding: 120px 0 80px; 
-            text-align: center; 
+        /* Layout Structure */
+        .page-wrapper {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            min-height: calc(100vh - 150px);
+            box-shadow: 0 0 20px rgba(0,0,0,0.02);
+        }
+
+        /* Left Sidebar */
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-menu li {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            background: transparent;
+        }
+
+        .sidebar-menu a i {
+            margin-right: 15px;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            opacity: 0.7;
+        }
+
+        .sidebar-menu a:hover {
+            background: #ffffff;
+            color: var(--primary-color);
+            padding-left: 25px;
+        }
+        
+        .sidebar-menu a::after {
+            content: '\F285'; /* bi-chevron-right */
+            font-family: 'bootstrap-icons';
+            margin-left: auto;
+            font-size: 0.8rem;
+            opacity: 0.3;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        /* Banner Carousel */
+        .hero-banner {
+            background: linear-gradient(to right, #f8fafc, #e2e8f0);
+            min-height: 500px;
             position: relative;
+            display: flex;
+            align-items: center;
+            padding: 40px;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, #fff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #cbd5e1;
+        .banner-text {
+            position: relative;
+            z-index: 2;
             max-width: 600px;
-            margin: 0 auto 30px;
+        }
+
+        .banner-text h1 {
+            font-size: 3.5rem;
+            color: var(--dark-bg);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .banner-text p {
+            font-size: 1.1rem;
+            color: var(--text-light);
             line-height: 1.6;
         }
 
-        /* Product Grid Container */
-        .section-title {
+        /* Product Grid */
+        .featured-section {
+            padding: 50px 40px;
+        }
+
+        .section-header {
             text-align: center;
-            margin-bottom: 50px;
-            position: relative;
-            font-weight: 800;
+            margin-bottom: 40px;
+        }
+        
+        .section-header h4 {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
             color: var(--dark-bg);
+            text-transform: uppercase;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--primary-color);
-            margin: 15px auto 0;
-            border-radius: 2px;
-        }
-
-        /* Card Styling */
         .product-card {
-            background: var(--card-bg);
-            border: none;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border: 1px solid var(--border-color);
+            border-radius: 0;
+            transition: all 0.3s;
             height: 100%;
             display: flex;
             flex-direction: column;
+            background: #fff;
         }
 
         .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-color: transparent;
+            transform: translateY(-5px);
         }
 
-        .card-img-wrapper {
-            position: relative;
-            overflow: hidden;
-            padding-top: 60%; /* Aspect ratio */
-            background: #f1f5f9;
-        }
-
-        .product-card .card-img-top { 
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .product-card:hover .card-img-top {
-            transform: scale(1.08);
-        }
-
-        .category-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(15, 23, 42, 0.8);
-            color: white;
-            backdrop-filter: blur(4px);
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            z-index: 2;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .card-body {
-            padding: 25px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            color: var(--text-dark);
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .card-text {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-
-        /* Call to Action Button */
-        .btn-rent {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 12px 20px;
-            font-weight: 600;
-            width: 100%;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
+        .product-img {
+            padding: 20px;
+            text-align: center;
+            background: #f8fafc;
+            height: 220px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            text-decoration: none;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .btn-rent:hover {
-            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.3);
-            transform: translateY(-2px);
-            color: white;
+        .product-img img {
+            max-height: 180px;
+            max-width: 100%;
+            object-fit: contain;
         }
 
-        /* Features Section */
-        .features-section {
-            background: white;
-            padding: 60px 0;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        
-        .feature-item {
-            text-align: center;
+        .product-info {
             padding: 20px;
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+            flex-grow: 1;
+            text-align: center;
         }
 
-        .feature-title {
+        .product-title {
             font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 10px;
+            font-weight: 600;
             color: var(--dark-bg);
-        }
-        
-        .feature-desc {
-            font-size: 0.9rem;
-            color: var(--text-light);
+            margin-bottom: 10px;
+            text-transform: uppercase;
         }
 
         /* Footer */
-        footer {
+        .footer {
             background: var(--dark-bg);
+            color: #fff;
+            padding: 60px 0 20px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
             color: white;
-            padding: 40px 0 20px;
-            text-align: center;
+            text-decoration: none;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-info p {
+            color: #94a3b8;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
         }
         
-        .empty-state {
-            text-align: center;
-            padding: 50px 20px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        .footer-info i {
+            width: 20px;
+            color: var(--primary-color);
+        }
+
+        .footer-nav h5 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-nav a {
+            color: #94a3b8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-nav a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            margin-top: 40px;
+            color: #64748b;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+
+        /* Floating WhatsApp */
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+            z-index: 1000;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .floating-wa:hover {
+            transform: scale(1.1);
+            color: white;
         }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="/">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14v-4z"/><rect x="3" y="6" width="12" height="12" rx="2" ry="2"/></svg>
-            Multimedia Rental
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav align-items-center">
-                <li class="nav-item me-3">
-                    <a class="nav-link active" href="/">Beranda</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/auth" class="btn btn-outline-light btn-sm px-4">Admin Login</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<div class="hero">
-    <div class="container">
-        <h1>Katalog Alat Event & Multimedia</h1>
-        <p>Sewa peralatan proyektor, kamera, sound system, dan LED TV berkualitas tinggi. Teknisi standby, pengiriman tepat waktu, dan harga transparan.</p>
-        <a href="#katalog" class="btn btn-rent" style="max-width: 220px; margin: 0 auto; padding: 15px 30px; font-size: 1rem;">Lihat Katalog Produk</a>
-    </div>
-</div>
-
-<div class="features-section">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="feature-item">
-                    <div class="feature-icon text-primary"><span class="material-symbols-outlined" style="font-size: inherit;">verified_user</span></div>
-                    <h3 class="feature-title">Peralatan Terawat</h3>
-                    <p class="feature-desc">Semua unit alat multimedia dan AV kami dipelihara secara rutin dan selalu dalam kondisi prima sebelum disewakan.</p>
+<!-- Top Header -->
+<div class="top-header">
+    <div class="container-fluid" style="max-width: 1400px;">
+        <div class="row align-items-center">
+            <div class="col-md-3">
+                <a href="/" class="brand-logo">
+                    <i class="bi bi-camera-reels-fill me-2 text-primary"></i> MS-Rent
+                </a>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group search-box">
+                    <input type="text" class="form-control search-input" placeholder="Search for products...">
+                    <button class="btn search-btn" type="button"><i class="bi bi-search"></i></button>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="feature-item">
-                    <div class="feature-icon text-primary"><span class="material-symbols-outlined" style="font-size: inherit;">engineering</span></div>
-                    <h3 class="feature-title">Dukungan Teknisi</h3>
-                    <p class="feature-desc">Teknisi berpengalaman kami siap membantu instalasi dan standby selama event Anda berlangsung.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="feature-item">
-                    <div class="feature-icon text-primary"><span class="material-symbols-outlined" style="font-size: inherit;">local_shipping</span></div>
-                    <h3 class="feature-title">Pengiriman Cepat</h3>
-                    <p class="feature-desc">Layanan pengantaran dan penjemputan alat ke lokasi acara agar aman dan tepat waktu.</p>
-                </div>
+            <div class="col-md-3 text-end d-none d-md-block">
+                <!-- Additional top header items if needed -->
             </div>
         </div>
     </div>
 </div>
 
-<div class="container mt-5 mb-5" id="katalog">
-    <h2 class="section-title">Produk Tersedia</h2>
-    
-    <?php if(empty($alat)): ?>
-        <div class="empty-state">
-            <h4 class="text-muted">Belum ada produk yang tersedia.</h4>
+<!-- Main Nav -->
+<div class="main-nav">
+    <div class="container-fluid p-0" style="max-width: 1400px; display: flex;">
+        <div style="width: 280px; flex-shrink: 0;">
+            <div class="category-header">
+                <i class="bi bi-list fs-4 me-3"></i> BROWSE CATEGORIES
+            </div>
         </div>
-    <?php else: ?>
-        <div class="row g-4">
-            <?php foreach($alat as $a): ?>
-            <div class="col-lg-4 col-md-6">
-                <div class="product-card">
-                    <div class="card-img-wrapper">
-                        <span class="category-badge"><?= esc($a['nama_kategori']) ?></span>
-                        <img src="/uploads/<?= esc($a['foto']) ?>" class="card-img-top" alt="<?= esc($a['nama_alat']) ?>" onerror="this.src='https://images.unsplash.com/photo-1542382257-80dedb725088?auto=format&fit=crop&q=80&w=800'">
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title"><?= esc($a['nama_alat']) ?></h3>
-                        <p class="card-text"><?= esc($a['deskripsi']) ?></p>
-                        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20info%20sewa%20<?= urlencode($a['nama_alat']) ?>" class="btn btn-rent" target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-                            Hubungi via WhatsApp
+        <div class="d-flex flex-grow-1 align-items-center justify-content-between px-3">
+            <div class="nav-links d-flex">
+                <a href="/" class="active">HOME</a>
+                <a href="#about">ABOUT US</a>
+                <a href="#contact">CONTACT US</a>
+            </div>
+            <div class="nav-right d-flex align-items-center">
+                <a href="/auth"><i class="bi bi-person me-2 fs-5"></i> ADMIN LOGIN</a>
+                <a href="#company" class="btn-profile d-none d-lg-block">COMPANY PROFILE</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Layout Wrapper -->
+<div class="page-wrapper">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul class="sidebar-menu">
+            <?php if(!empty($kategori)): ?>
+                <?php foreach($kategori as $k): ?>
+                    <li>
+                        <a href="#<?= esc($k['id_kategori']) ?>">
+                            <!-- Adding a dynamic icon based on common names, or default to circle -->
+                            <?php 
+                                $icon = 'bi-record-circle';
+                                $lowerName = strtolower($k['nama_kategori']);
+                                if(strpos($lowerName, 'kamera') !== false) $icon = 'bi-camera-video';
+                                elseif(strpos($lowerName, 'lensa') !== false) $icon = 'bi-camera';
+                                elseif(strpos($lowerName, 'sound') !== false) $icon = 'bi-speaker';
+                                elseif(strpos($lowerName, 'proyektor') !== false) $icon = 'bi-projector';
+                                elseif(strpos($lowerName, 'lighting') !== false) $icon = 'bi-lightbulb';
+                                elseif(strpos($lowerName, 'komunikasi') !== false || strpos($lowerName, 'ht') !== false) $icon = 'bi-headset';
+                            ?>
+                            <i class="bi <?= $icon ?>"></i> <?= esc($k['nama_kategori']) ?>
                         </a>
-                    </div>
+                    </li>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <li><a href="#"><i class="bi bi-info-circle"></i> Kategori Kosong</a></li>
+            <?php endif; ?>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Banner Carousel -->
+        <div class="hero-banner">
+            <div class="banner-text">
+                <h1>High Quality Multimedia Equipment</h1>
+                <p>MS-Rent provides various types of professional equipment for your events. Cameras, Sound Systems, Lighting, and others. Ready to deploy across the region.</p>
+                <div class="mt-4">
+                    <span class="badge bg-white text-dark border p-2 me-2 shadow-sm">Kamera</span>
+                    <span class="badge bg-white text-dark border p-2 me-2 shadow-sm">Sound System</span>
+                    <span class="badge bg-white text-dark border p-2 shadow-sm">Lighting</span>
                 </div>
             </div>
-            <?php endforeach; ?>
+            <!-- Decorative Graphic / Hero Image Placeholder -->
+            <div style="position: absolute; right: -50px; top: 50%; transform: translateY(-50%); opacity: 0.8;">
+                 <!-- Abstract geometric shapes mimicking the conveyor belts on Makitech, but abstract -->
+                 <svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 350 L450 100 L550 150 L150 400 Z" fill="#cbd5e1" opacity="0.5"/>
+                    <path d="M100 350 L500 100 L600 150 L200 400 Z" fill="#94a3b8" opacity="0.3"/>
+                    <circle cx="450" cy="125" r="40" fill="var(--primary-color)" opacity="0.8"/>
+                    <circle cx="350" cy="187" r="40" fill="var(--primary-color)" opacity="0.9"/>
+                    <circle cx="250" cy="250" r="40" fill="var(--primary-color)"/>
+                 </svg>
+            </div>
         </div>
-    <?php endif; ?>
+
+        <!-- Featured Products -->
+        <div class="featured-section">
+            <div class="section-header">
+                <h4>MS-Rent Collections</h4>
+                <h2>Featured Equipment</h2>
+                <p class="text-muted">We provide premium gear for professional productions</p>
+            </div>
+
+            <?php if(empty($alat)): ?>
+                <div class="text-center py-5">
+                    <i class="bi bi-box-seam text-muted" style="font-size: 4rem;"></i>
+                    <h4 class="mt-3 text-muted">Belum ada produk yang tersedia.</h4>
+                </div>
+            <?php else: ?>
+                <div class="row g-0">
+                    <?php foreach($alat as $a): ?>
+                    <div class="col-lg-4 col-md-6 border-end border-bottom border-color">
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="/uploads/<?= esc($a['foto']) ?>" alt="<?= esc($a['nama_alat']) ?>" onerror="this.src='https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=400'">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title"><?= esc($a['nama_alat']) ?></h3>
+                                <p class="text-muted small mb-3"><?= esc($a['nama_kategori']) ?></p>
+                                <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20menyewa%20<?= urlencode($a['nama_alat']) ?>" target="_blank" class="btn btn-outline-dark btn-sm text-uppercase px-4 rounded-0 fw-bold w-100">Inquire Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
 </div>
 
-<footer>
-    <div class="container">
-        <p class="mb-0 text-white-50">&copy; <?= date('Y') ?> Sistem Penyewaan Multimedia. All rights reserved.</p>
+<!-- Footer -->
+<div class="footer">
+    <div class="container-fluid" style="max-width: 1400px; padding: 0 40px;">
+        <div class="row">
+            <div class="col-lg-5 pe-5">
+                <a href="/" class="footer-logo">
+                    <i class="bi bi-camera-reels-fill text-primary"></i> MS-Rent
+                </a>
+                <p style="color: #cbd5e1; line-height: 1.6; margin-bottom: 30px;">
+                    MS-Rent empower the creative, production, and event industries through integrated high-quality multimedia and AV equipment rentals.
+                </p>
+                <div class="footer-info">
+                    <p><i class="bi bi-geo-alt-fill"></i> Kawasan Bisnis Sudirman, Jakarta Selatan 12190</p>
+                    <p><i class="bi bi-telephone-fill"></i> PHONE : (+62) 21-1234-5678</p>
+                    <p><i class="bi bi-whatsapp"></i> WA : (+62) 812-3456-7890</p>
+                </div>
+            </div>
+            <div class="col-lg-3 mt-4 mt-lg-0">
+                <div class="footer-nav">
+                    <h5>Navigation</h5>
+                    <a href="/">Home</a>
+                    <a href="#about">About Us</a>
+                    <a href="#contact">Contact Us</a>
+                    <a href="#products">Products</a>
+                </div>
+            </div>
+            <div class="col-lg-4 mt-4 mt-lg-0">
+                <div class="footer-nav">
+                    <h5>Categories</h5>
+                    <?php $count=0; foreach($kategori as $k): if($count>=4) break; ?>
+                        <a href="#"><?= esc($k['nama_kategori']) ?></a>
+                    <?php $count++; endforeach; ?>
+                </div>
+            </div>
+        </div>
+        <div class="copyright d-flex justify-content-between align-items-center">
+            <div>&copy; <?= date('Y') ?> <strong>PT Multimedia Sistem Rent</strong>. All Rights Reserved.</div>
+        </div>
     </div>
-</footer>
+</div>
+
+<a href="https://wa.me/6281234567890" target="_blank" class="floating-wa">
+    <i class="bi bi-whatsapp"></i>
+</a>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

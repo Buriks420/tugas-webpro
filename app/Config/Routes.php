@@ -15,10 +15,18 @@ $routes->get('/dashboard', 'Dashboard::index');
 $routes->get('/kategori', 'Kategori::index');
 $routes->get('/kategori/create', 'Kategori::create');
 $routes->post('/kategori/store', 'Kategori::store');
+$routes->get('/kategori/edit/(:num)', 'Kategori::edit/$1');
+$routes->post('/kategori/update/(:num)', 'Kategori::update/$1');
+$routes->get('/kategori/delete/(:num)', 'Kategori::delete/$1');
+$routes->get('/kategori/toggleHide/(:num)', 'Kategori::toggleHide/$1');
 
 $routes->get('/alat', 'Alat::index');
 $routes->get('/alat/create', 'Alat::create');
 $routes->post('/alat/store', 'Alat::store');
+$routes->get('/alat/edit/(:num)', 'Alat::edit/$1');
+$routes->post('/alat/update/(:num)', 'Alat::update/$1');
+$routes->get('/alat/delete/(:num)', 'Alat::delete/$1');
+$routes->get('/alat/toggleHide/(:num)', 'Alat::toggleHide/$1');
 
 $routes->get('/penyewa', 'Penyewa::index');
 $routes->get('/penyewa/create', 'Penyewa::create');

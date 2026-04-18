@@ -41,4 +41,41 @@ class Kategori extends BaseController
         ]);
         return redirect()->to('/kategori');
     }
+
+    public function edit($id)
+    {
+        $data = [
+            'title' => 'Edit Kategori',
+            'kategori' => $this->kategoriModel->find($id)
+        ];
+        echo view('layout/header', $data);
+        echo view('layout/sidebar');
+        echo view('kategori/edit', $data);
+        echo view('layout/footer');
+    }
+
+    public function update($id)
+    {
+        $this->kategoriModel->update($id, [
+            'nama_kategori' => $this->request->getVar('nama_kategori')
+        ]);
+        return redirect()->to('/kategori');
+    }
+
+    public function delete($id)
+    {
+        $this->kategoriModel->delete($id);
+        return redirect()->to('/kategori');
+    }
+
+    public function toggleHide($id)
+    {
+        $kategori = $this->kategoriModel->find($id);
+        if ($kategori) {
+            $this->kategoriModel->update($id, [
+                'is_hidden' => $kategori['is_hidden'] ? 0 : 1
+            ]);
+        }
+        return redirect()->to('/kategori');
+    }
 }

@@ -56,4 +56,56 @@ class Alat extends BaseController
 
         return redirect()->to('/alat');
     }
+
+    public function edit($id)
+    {
+        $data = [
+            'title' => 'Edit Alat',
+            'alat' => $this->alatModel->find($id),
+            'kategori' => $this->kategoriModel->findAll()
+        ];
+        echo view('layout/header', $data);
+        echo view('layout/sidebar');
+        echo view('alat/edit', $data);
+        echo view('layout/footer');
+    }
+
+    public function update($id)
+    {
+        $alatLama = $this->alatModel->find($id);
+        $fileFoto = $this->request->getFile('foto');
+        
+        if ($fileFoto->getError() == 4) {
+            $namaFoto = $alatLama['foto'];
+        } else {
+            $namaFoto = $fileFoto->getRandomName();
+            $fileFoto->move('uploads', $namaFoto);
+            // Optionally delete old photo: unlink('uploads/' . $alatLama['foto']);
+        }
+
+        $this->alatModel->update($id, [
+            'nama_alat' => $this->request->getVar('nama_alat'),
+            'id_kategori' => $this->request->getVar('id_kategori'),
+            'deskripsi' => $this->request->getVar('deskripsi'),
+            'foto' => $namaFoto
+        ]);
+        return redirect()->to('/alat');
+    }
+
+    public function delete($id)
+    {
+        $this->alatModel->delete($id);
+        return redirect()->to('/alat');
+    }
+
+    public function toggleHide($id)
+    {
+        $alat = $this->alatModel->find($id);
+        if ($alat) {
+            $this->alatModel->update($id, [
+                'is_hidden' => $alat['is_hidden'] ? 0 : 1
+            ]);
+        }
+        return redirect()->to('/alat');
+    }
 }
