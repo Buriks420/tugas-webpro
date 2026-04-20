@@ -44,6 +44,7 @@ $RECYCLE.BIN/
 .env
 .vagrant
 Vagrantfile
+Diagram_UML.md
 
 #-------------------------
 # Temporary Files
