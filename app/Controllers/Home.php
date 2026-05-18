@@ -35,4 +35,40 @@ class Home extends BaseController
         
         return view('public/index', $data);
     }
+
+    public function detail($id)
+    {
+        $alatModel = new AlatModel();
+        $kategoriModel = new KategoriModel();
+        
+        $alat = $alatModel->select('alat.*, kategori.nama_kategori')
+                          ->join('kategori', 'kategori.id_kategori = alat.id_kategori')
+                          ->where('alat.id_alat', $id)
+                          ->where('alat.is_hidden', 0)
+                          ->first();
+                          
+        if (!$alat) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        $kategoriList = $kategoriModel->where('is_hidden', 0)->findAll();
+        $alatAll = $alatModel->getAlatWithKategori(true);
+        
+        $kategoriWithAlat = [];
+        foreach($kategoriList as $k) {
+            $items = array_filter($alatAll, function($a) use ($k) {
+                return $a['id_kategori'] == $k['id_kategori'];
+            });
+            $k['items'] = $items;
+            $kategoriWithAlat[] = $k;
+        }
+
+        $data = [
+            'title' => $alat['nama_alat'] . ' - MS-Rent',
+            'alat' => $alat,
+            'kategoriWithAlat' => $kategoriWithAlat
+        ];
+        
+        return view('public/detail', $data);
+    }
 }

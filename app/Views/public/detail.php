@@ -602,7 +602,7 @@
                             <?php if(!empty($k['items'])): ?>
                                 <div class="mega-menu-grid">
                                     <?php foreach($k['items'] as $item): ?>
-                                        <a href="/item/<?= esc($item['id_alat']) ?>" class="mega-item text-decoration-none">
+                                        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20menyewa%20<?= urlencode($item['nama_alat']) ?>" class="mega-item text-decoration-none" target="_blank">
                                             <img src="/uploads/<?= esc($item['foto']) ?>" alt="<?= esc($item['nama_alat']) ?>" onerror="this.src='https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=200'">
                                             <span class="mega-item-name"><?= esc($item['nama_alat']) ?></span>
                                             <span class="text-primary fw-bold text-center mt-1" style="font-size:0.85rem;">Rp <?= number_format(isset($item['harga']) ? $item['harga'] : 0, 0, ',', '.') ?></span>
@@ -622,212 +622,100 @@
     </div>
 
     <!-- Main Content -->
-    <div class="main-content">
-        <!-- Banner Carousel -->
-        <div class="hero-banner">
-            <div class="banner-text">
-                <h1>High Quality Equipment Rentals</h1>
-                <p>MS-Rent provides professional gear for your production and event needs. Featuring our top-tier collections ready to deploy.</p>
-                <div class="mt-4">
-                    <span class="badge bg-white text-dark border p-2 me-2 shadow-sm">Kamera</span>
-                    <span class="badge bg-white text-dark border p-2 me-2 shadow-sm">Sound System</span>
-                    <span class="badge bg-white text-dark border p-2 shadow-sm">Lighting</span>
-                </div>
-            </div>
-            <!-- Decorative Graphic -->
-            <div style="position: absolute; right: -50px; top: 50%; transform: translateY(-50%); opacity: 0.8;">
-                 <svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M50 350 L450 100 L550 150 L150 400 Z" fill="var(--border-color)" opacity="0.5"/>
-                    <path d="M100 350 L500 100 L600 150 L200 400 Z" fill="var(--text-light)" opacity="0.1"/>
-                    <circle cx="450" cy="125" r="40" fill="var(--primary-color)" opacity="0.8"/>
-                    <circle cx="350" cy="187" r="40" fill="var(--primary-color)" opacity="0.9"/>
-                    <circle cx="250" cy="250" r="40" fill="var(--primary-color)"/>
-                 </svg>
-            </div>
-        </div>
+    <div class="main-content bg-white">
+        <div class="container py-5 px-4" style="max-width: 1100px;">
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/" class="text-decoration-none" style="color: var(--primary-color);">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-secondary"><?= esc($alat['nama_kategori']) ?></a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><?= esc($alat['nama_alat']) ?></li>
+                </ol>
+            </nav>
 
-        <!-- Featured Products -->
-        <div class="featured-section">
-            <div class="section-header">
-                <h4>MS-Rent Collections</h4>
-                <h2>Featured Equipment</h2>
-                <p class="text-muted">Explore our highlighted premium gear</p>
-            </div>
-
-            <?php if(empty($featuredAlat)): ?>
-                <div class="text-center py-5">
-                    <i class="bi bi-box-seam text-muted" style="font-size: 4rem;"></i>
-                    <h4 class="mt-3 text-muted">Belum ada produk yang ditampilkan.</h4>
-                </div>
-            <?php else: ?>
-                <div class="row g-0 border-top border-start border-color">
-                    <?php foreach($featuredAlat as $a): ?>
-                    <div class="col-lg-4 col-md-6 border-end border-bottom border-color">
-                        <div class="product-card">
-                            
-                            <?php 
-                                $tags = isset($a['tags']) ? explode(',', strtolower($a['tags'])) : [];
-                            ?>
-                            <?php if(in_array('hot', $tags)): ?>
-                                <span class="product-badge badge-hot">HOT</span>
-                            <?php endif; ?>
-                            <?php if(in_array('sale', $tags)): ?>
-                                <span class="product-badge badge-sale" style="<?= in_array('hot', $tags) ? 'top: 45px;' : 'top: 15px;' ?>">SALE</span>
-                            <?php endif; ?>
-
-                            <div class="product-img p-0 position-relative">
-                                <?php 
-                                    $additionalFotos = !empty($a['foto_lainnya']) ? json_decode($a['foto_lainnya'], true) : [];
-                                    if(empty($additionalFotos)): 
-                                ?>
-                                    <a href="/item/<?= esc($a['id_alat']) ?>" style="padding: 20px; height: 220px; display: flex; align-items: center; justify-content: center; width: 100%;">
-                                        <img src="/uploads/<?= esc($a['foto']) ?>" alt="<?= esc($a['nama_alat']) ?>" onerror="this.src='https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=400'" style="max-height: 180px; max-width: 100%; object-fit: contain;">
-                                    </a>
-                                <?php else: 
-                                    $carouselId = 'carousel-' . $a['id_alat'];
-                                ?>
-                                    <div id="<?= $carouselId ?>" class="carousel slide" data-bs-ride="carousel" style="width: 100%;">
-                                        <div class="carousel-inner">
-                                            <div class="carousel-item active">
-                                                <a href="/item/<?= esc($a['id_alat']) ?>" style="padding: 20px; height: 220px; display: flex; align-items: center; justify-content: center; text-decoration: none;">
-                                                    <img src="/uploads/<?= esc($a['foto']) ?>" alt="<?= esc($a['nama_alat']) ?>" style="max-height: 180px; max-width: 100%; object-fit: contain;">
-                                                </a>
-                                            </div>
-                                            <?php foreach($additionalFotos as $af): ?>
-                                            <div class="carousel-item">
-                                                <a href="/item/<?= esc($a['id_alat']) ?>" style="padding: 20px; height: 220px; display: flex; align-items: center; justify-content: center; text-decoration: none;">
-                                                    <img src="/uploads/<?= esc($af) ?>" alt="<?= esc($a['nama_alat']) ?>" style="max-height: 180px; max-width: 100%; object-fit: contain;">
-                                                </a>
-                                            </div>
-                                            <?php endforeach; ?>
-                                        </div>
-                                        <button class="carousel-control-prev" type="button" data-bs-target="#<?= $carouselId ?>" data-bs-slide="prev" style="width: 15%; border-radius: 0;">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(1) grayscale(100); opacity: 0.8;"></span>
-                                        </button>
-                                        <button class="carousel-control-next" type="button" data-bs-target="#<?= $carouselId ?>" data-bs-slide="next" style="width: 15%; border-radius: 0;">
-                                            <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(1) grayscale(100); opacity: 0.8;"></span>
-                                        </button>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                            <div class="product-info">
-                                <h3 class="product-title"><?= esc($a['nama_alat']) ?></h3>
-                                <p class="text-muted small mb-1"><?= esc($a['nama_kategori']) ?></p>
-                                <h5 class="mb-3 fw-bold" style="color: var(--primary-color);">Rp <?= number_format(isset($a['harga']) ? $a['harga'] : 0, 0, ',', '.') ?></h5>
-                                <a href="/item/<?= esc($a['id_alat']) ?>" class="btn btn-outline-dark btn-sm text-uppercase px-4 rounded-0 fw-bold w-100">View Details</a>
-                            </div>
+            <div class="row g-5">
+                <!-- Left: Image Gallery -->
+                <div class="col-lg-6">
+                    <div class="product-gallery sticky-top" style="top: 100px;">
+                        <div class="main-image bg-light rounded-4 d-flex align-items-center justify-content-center p-4 mb-3 border" style="height: 450px;">
+                            <img src="/uploads/<?= esc($alat['foto']) ?>" id="mainProductImage" alt="<?= esc($alat['nama_alat']) ?>" style="max-height: 100%; max-width: 100%; object-fit: contain; transition: all 0.3s ease;">
                         </div>
-                    </div>
-                    <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
-        </div>
-
-        <!-- About Us Section -->
-        <div id="about" class="about-section py-5 px-4 bg-white mt-5">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0 pe-lg-5">
-                    <h5 class="text-primary fw-bold text-uppercase tracking-wide mb-2">About Us</h5>
-                    <h2 class="display-5 fw-bold mb-4" style="font-family: 'Outfit', sans-serif;">Empowering Creative Visions with Premium Gear</h2>
-                    <p class="text-muted lead mb-4">
-                        At MS-Rent, we believe that high-quality production shouldn't be limited by access to equipment. We are your trusted partner in providing state-of-the-art multimedia, AV, and broadcasting tools for your projects.
-                    </p>
-                    <div class="row g-4 mt-2">
-                        <div class="col-6">
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-camera-reels-fill text-primary fs-1 me-3"></i>
-                                <div>
-                                    <h4 class="fw-bold mb-0">100+</h4>
-                                    <span class="text-muted small">Premium Items</span>
-                                </div>
+                        <?php 
+                            $additionalFotos = !empty($alat['foto_lainnya']) ? json_decode($alat['foto_lainnya'], true) : [];
+                            if(!empty($additionalFotos)): 
+                        ?>
+                        <div class="d-flex gap-3 overflow-auto pb-2 custom-scrollbar">
+                            <div class="thumbnail-wrapper border rounded-3 bg-light p-2 border-primary" style="width: 80px; height: 80px; flex-shrink: 0;" onclick="changeMainImage('/uploads/<?= esc($alat['foto']) ?>', this)">
+                                <img src="/uploads/<?= esc($alat['foto']) ?>" class="w-100 h-100 object-fit-contain" style="object-fit: contain;">
                             </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-people-fill text-primary fs-1 me-3"></i>
-                                <div>
-                                    <h4 class="fw-bold mb-0">24/7</h4>
-                                    <span class="text-muted small">Expert Support</span>
-                                </div>
+                            <?php foreach($additionalFotos as $af): ?>
+                            <div class="thumbnail-wrapper border rounded-3 bg-light p-2" style="width: 80px; height: 80px; flex-shrink: 0;" onclick="changeMainImage('/uploads/<?= esc($af) ?>', this)">
+                                <img src="/uploads/<?= esc($af) ?>" class="w-100 h-100 object-fit-contain" style="object-fit: contain;">
                             </div>
+                            <?php endforeach; ?>
                         </div>
+                        <script>
+                            function changeMainImage(src, element) {
+                                document.getElementById('mainProductImage').style.opacity = 0;
+                                setTimeout(() => {
+                                    document.getElementById('mainProductImage').src = src;
+                                    document.getElementById('mainProductImage').style.opacity = 1;
+                                }, 150);
+                                document.querySelectorAll('.thumbnail-wrapper').forEach(el => {
+                                    el.classList.remove('border-primary');
+                                });
+                                element.classList.add('border-primary');
+                            }
+                        </script>
+                        <style>
+                            .thumbnail-wrapper { cursor: pointer; transition: all 0.2s; border-width: 2px !important; }
+                            .thumbnail-wrapper:hover { border-color: var(--primary-color) !important; }
+                            .custom-scrollbar::-webkit-scrollbar { height: 6px; }
+                            .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+                            .custom-scrollbar::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 4px; }
+                            .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
+                        </style>
+                        <?php endif; ?>
                     </div>
                 </div>
-                <div class="col-lg-6 mt-5 mt-lg-0">
-                    <div class="position-relative">
-                        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=800" alt="About MS-Rent" class="img-fluid rounded-4 shadow-lg">
-                        <div class="position-absolute bottom-0 start-0 bg-primary text-white p-4 rounded-4 shadow" style="transform: translate(-5%, 15%); max-width: 250px;">
-                            <h5 class="fw-bold mb-1">Our Mission</h5>
-                            <p class="small mb-0 opacity-75">To deliver the best rental experience with uncompromised quality.</p>
+
+                <!-- Right: Details -->
+                <div class="col-lg-6">
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="badge text-white px-3 py-2 me-3 rounded-pill" style="background-color: var(--primary-color); font-weight: 600; letter-spacing: 0.5px;"><?= esc($alat['nama_kategori']) ?></span>
+                        <span class="text-muted small fw-bold" style="letter-spacing: 1px;">CODE: ALAT-<?= esc($alat['id_alat']) ?></span>
+                    </div>
+                    
+                    <h1 class="display-6 fw-bold mb-4" style="color: var(--dark-bg); font-family: 'Outfit', sans-serif; line-height: 1.2;"><?= esc($alat['nama_alat']) ?></h1>
+                    
+                    <div class="price-block mb-4 p-4 rounded-4 bg-light border border-2 border-opacity-10 d-flex align-items-center justify-content-between">
+                        <div>
+                            <p class="text-muted mb-1 text-uppercase fw-bold" style="font-size: 0.8rem; letter-spacing: 1px;">Rental Rate</p>
+                            <h2 class="fw-bold mb-0" style="color: var(--dark-bg);">Rp <?= number_format(isset($alat['harga']) ? $alat['harga'] : 0, 0, ',', '.') ?> <span class="fs-5 text-muted fw-normal">/ Day</span></h2>
+                        </div>
+                        <div class="bg-white p-2 rounded-3 border shadow-sm text-center" style="width: 60px;">
+                            <i class="bi bi-shield-check text-success fs-4"></i>
+                            <div style="font-size: 0.65rem;" class="fw-bold mt-1 text-dark">READY</div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Contact Us Section -->
-        <div id="contact" class="contact-section py-5 px-4 mt-5" style="background-color: var(--sidebar-bg);">
-            <div class="text-center mb-5">
-                <h5 class="text-primary fw-bold text-uppercase tracking-wide mb-2">Get in Touch</h5>
-                <h2 class="fw-bold" style="font-family: 'Outfit', sans-serif;">Contact Us For Any Questions</h2>
-            </div>
-            
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
-                        <div class="row g-0">
-                            <div class="col-md-5 bg-dark text-white p-5 d-flex flex-column justify-content-center">
-                                <h4 class="fw-bold mb-4">Contact Information</h4>
-                                <div class="d-flex mb-4">
-                                    <i class="bi bi-geo-alt-fill text-primary fs-4 me-3 mt-1"></i>
-                                    <div>
-                                        <h6 class="fw-bold mb-1">Address</h6>
-                                        <p class="text-white-50 small mb-0">[Address Placeholder 1]<br>[Address Placeholder 2]</p>
-                                    </div>
-                                </div>
-                                <div class="d-flex mb-4">
-                                    <i class="bi bi-telephone-fill text-primary fs-4 me-3 mt-1"></i>
-                                    <div>
-                                        <h6 class="fw-bold mb-1">Phone</h6>
-                                        <p class="text-white-50 small mb-0">[Phone Placeholder]</p>
-                                    </div>
-                                </div>
-                                <div class="d-flex mb-4">
-                                    <i class="bi bi-envelope-fill text-primary fs-4 me-3 mt-1"></i>
-                                    <div>
-                                        <h6 class="fw-bold mb-1">Email</h6>
-                                        <p class="text-white-50 small mb-0">[Email Placeholder]</p>
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <i class="bi bi-whatsapp text-primary fs-4 me-3 mt-1"></i>
-                                    <div>
-                                        <h6 class="fw-bold mb-1">WhatsApp</h6>
-                                        <p class="text-white-50 small mb-0">[WhatsApp Placeholder]</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-7 p-5 bg-white">
-                                <h4 class="fw-bold mb-4 text-dark">Send us a Message</h4>
-                                <form>
-                                    <div class="row g-3">
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control form-control-lg bg-light border-0" placeholder="Your Name" required>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <input type="email" class="form-control form-control-lg bg-light border-0" placeholder="Your Email" required>
-                                        </div>
-                                        <div class="col-12">
-                                            <input type="text" class="form-control form-control-lg bg-light border-0" placeholder="Subject" required>
-                                        </div>
-                                        <div class="col-12">
-                                            <textarea class="form-control form-control-lg bg-light border-0" rows="4" placeholder="Your Message" required></textarea>
-                                        </div>
-                                        <div class="col-12 mt-4">
-                                            <button type="submit" class="btn btn-primary btn-lg px-5 rounded-pill shadow-sm fw-bold">Send Message</button>
-                                        </div>
-                                    </div>
-                                </form>
+                    <div class="action-block mb-5 mt-4">
+                        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20menyewa%20<?= urlencode($alat['nama_alat']) ?>" target="_blank" class="btn btn-success btn-lg w-100 rounded-pill fw-bold shadow-sm d-flex align-items-center justify-content-center py-3" style="font-size: 1.1rem; transition: transform 0.2s;">
+                            <i class="bi bi-whatsapp fs-4 me-3"></i> Reserve via WhatsApp
+                        </a>
+                        <p class="text-center text-muted small mt-3"><i class="bi bi-clock-history me-1"></i> Fast response during business hours (09:00 - 18:00)</p>
+                    </div>
+
+                    <!-- Description Tabs -->
+                    <ul class="nav nav-tabs mb-4 border-bottom-0" id="productTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active fw-bold text-dark border-0 border-bottom border-primary border-3 bg-transparent" id="desc-tab" data-bs-toggle="tab" data-bs-target="#desc" type="button" role="tab" aria-controls="desc" aria-selected="true" style="font-size: 1.1rem;">Product Description</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="productTabContent">
+                        <div class="tab-pane fade show active" id="desc" role="tabpanel" aria-labelledby="desc-tab">
+                            <div class="text-dark lh-lg" style="font-size: 1rem; color: var(--text-dark);">
+                                <?= $alat['deskripsi'] ?>
                             </div>
                         </div>
                     </div>
