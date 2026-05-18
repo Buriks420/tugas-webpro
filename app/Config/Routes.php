@@ -30,6 +30,7 @@ $routes->post('/alat/store', 'Alat::store');
 $routes->get('/alat/edit/(:num)', 'Alat::edit/$1');
 $routes->post('/alat/update/(:num)', 'Alat::update/$1');
 $routes->get('/alat/delete/(:num)', 'Alat::delete/$1');
+$routes->get('/alat/deleteFotoLainnya/(:num)/(:num)', 'Alat::deleteFotoLainnya/$1/$2');
 $routes->get('/alat/toggleHide/(:num)', 'Alat::toggleHide/$1');
 
 $routes->get('/penyewa', 'Penyewa::index');

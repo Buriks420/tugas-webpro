@@ -557,11 +557,7 @@
                     
                     <div class="dropdown">
                         <a href="#" class="d-flex align-items-center text-decoration-none" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?php if(!empty(session()->get('avatar'))): ?>
-                                <img src="/uploads/avatars/<?= esc(session()->get('avatar')) ?>" alt="User Avatar" class="rounded-circle me-2" style="width: 35px; height: 35px; object-fit: cover; border: 2px solid var(--primary-color); box-shadow: 0 2px 5px rgba(249,115,22,0.2);">
-                            <?php else: ?>
-                                <img src="https://www.gravatar.com/avatar/<?= md5(strtolower(trim(session()->get('email') ?? ''))) ?>?s=40&d=mp" alt="User Avatar" class="rounded-circle me-2" style="width: 35px; height: 35px; object-fit: cover; border: 2px solid var(--primary-color); box-shadow: 0 2px 5px rgba(249,115,22,0.2);">
-                            <?php endif; ?>
+                            <i class="bi bi-person-circle fs-4 me-2" style="color: var(--primary-color);"></i>
                             <span class="text-dark fw-bold d-none d-md-inline" style="font-size:0.9rem;"><?= esc(session()->get('username')) ?></span>
                             <i class="bi bi-chevron-down ms-2 text-muted" style="font-size:0.7rem;"></i>
                         </a>

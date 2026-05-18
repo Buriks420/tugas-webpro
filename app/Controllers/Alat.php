@@ -128,6 +128,36 @@ class Alat extends BaseController
         return redirect()->to('/alat');
     }
 
+    public function deleteFotoLainnya($id, $index)
+    {
+        $index = (int)$index;
+        $alat = $this->alatModel->find($id);
+        if ($alat) {
+            $fotoLainnya = !empty($alat['foto_lainnya']) ? json_decode($alat['foto_lainnya'], true) : [];
+            
+            if (array_key_exists($index, $fotoLainnya)) {
+                $filename = $fotoLainnya[$index];
+                
+                // Delete from filesystem
+                if (file_exists('uploads/' . $filename)) {
+                    unlink('uploads/' . $filename);
+                }
+                
+                // Remove from array and reindex
+                unset($fotoLainnya[$index]);
+                $fotoLainnya = array_values($fotoLainnya);
+                
+                // Update DB
+                $this->alatModel->update($id, [
+                    'foto_lainnya' => json_encode($fotoLainnya)
+                ]);
+                
+                return $this->response->setJSON(['success' => true, 'message' => 'Foto berhasil dihapus.']);
+            }
+        }
+        return $this->response->setJSON(['success' => false, 'message' => 'Foto tidak ditemukan.']);
+    }
+
     public function delete($id)
     {
         $this->alatModel->delete($id);

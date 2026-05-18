@@ -12,7 +12,8 @@
                     <li class="nav-item"><a href="/alat" class="nav-link"><i class="nav-icon bi bi-camera-video"></i> <p>Data Alat</p></a></li>
                     <li class="nav-item"><a href="/penyewa" class="nav-link"><i class="nav-icon bi bi-people-fill"></i> <p>Data Pengguna</p></a></li>
                     <li class="nav-item"><a href="/transaksi" class="nav-link"><i class="nav-icon bi bi-cart-check"></i> <p>Transaksi Penyewaan</p></a></li>
-                    <li class="nav-item mt-4"><a href="/auth/logout" class="nav-link text-danger"><i class="nav-icon bi bi-box-arrow-right"></i> <p>Logout</p></a></li>
+                    <li class="nav-item mt-4"><a href="/" class="nav-link text-primary"><i class="nav-icon bi bi-house"></i> <p>Kembali ke Beranda</p></a></li>
+                    <li class="nav-item"><a href="/auth/logout" class="nav-link text-danger"><i class="nav-icon bi bi-box-arrow-right"></i> <p>Logout</p></a></li>
                 </ul>
             </nav>
         </div>

@@ -27,40 +27,6 @@
             z-index: 1;
         }
 
-        .profile-header .avatar-container {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            overflow: hidden;
-            border: 4px solid white;
-            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
-            position: relative;
-            cursor: pointer;
-        }
-
-        .avatar-overlay {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.5);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .profile-header .avatar-container:hover .avatar-overlay {
-            opacity: 1;
-        }
-
-        .profile-header .avatar-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
 
         .form-floating > .form-control {
             border-radius: 12px;
@@ -108,24 +74,13 @@
 </head>
 <body>
     <div class="profile-card p-5">
-        <form action="/auth/updateProfile" method="post" enctype="multipart/form-data">
+        <form action="/auth/updateProfile" method="post">
             <div class="profile-header text-center mb-4">
-                <label for="avatarInput" class="avatar-container d-block mx-auto mb-2" title="Click to change profile picture">
-                    <?php if(!empty($user['avatar'])): ?>
-                        <img src="/uploads/avatars/<?= esc($user['avatar']) ?>" alt="Avatar" id="avatarPreview">
-                    <?php else: ?>
-                        <img src="https://www.gravatar.com/avatar/<?= md5(strtolower(trim($user['email']))) ?>?s=200&d=mp" alt="Avatar" id="avatarPreview">
-                    <?php endif; ?>
-                    <div class="avatar-overlay">
-                        <i class="bi bi-camera-fill fs-4"></i>
-                        <span style="font-size: 10px;">Change</span>
-                    </div>
-                </label>
-                <input type="file" name="avatar" id="avatarInput" class="d-none" accept="image/*" onchange="previewImage(this)">
-                
+                <div class="d-inline-flex align-items-center justify-content-center mb-3" style="width: 70px; height: 70px; background: linear-gradient(135deg, #f97316, #ea580c); color: white; border-radius: 20px; font-size: 32px; box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4);">
+                    <i class="bi bi-person-fill"></i>
+                </div>
                 <h4 class="fw-bold mb-1"><?= esc($user['nama_lengkap']) ?></h4>
                 <p class="text-muted small">Update your profile information</p>
-                <p class="text-muted" style="font-size:0.8rem;">Note: Upload an image or use Gravatar</p>
             </div>
 
             <?php if(session()->getFlashdata('validation')):?>
@@ -180,16 +135,6 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function previewImage(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('avatarPreview').src = e.target.result;
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    </script>
+
 </body>
 </html>

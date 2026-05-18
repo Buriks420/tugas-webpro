@@ -47,6 +47,7 @@ Vagrantfile
 Diagram_UML.md
 public/uploads
 Deployment_Diagram.html
+current_edit_page.html
 
 
 #-------------------------

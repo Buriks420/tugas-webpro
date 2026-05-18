@@ -1,4 +1,12 @@
 <h2>Edit Alat Multimedia</h2>
+
+<?php if(session()->getFlashdata('success')): ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle me-2"></i><?= session()->getFlashdata('success') ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<?php endif; ?>
+
 <form action="/alat/update/<?= $alat['id_alat'] ?>" method="post" enctype="multipart/form-data" class="w-75">
     <div class="row">
         <div class="col-md-6 mb-3">
@@ -38,8 +46,13 @@
                 <?php 
                 $fotoLainnya = !empty($alat['foto_lainnya']) ? json_decode($alat['foto_lainnya'], true) : [];
                 if(!empty($fotoLainnya)):
-                    foreach($fotoLainnya as $fl): ?>
-                        <img src="/uploads/<?= esc($fl) ?>" width="80" class="rounded shadow-sm">
+                    foreach($fotoLainnya as $index => $fl): ?>
+                        <div class="position-relative d-inline-block">
+                            <img src="/uploads/<?= esc($fl) ?>" width="80" class="rounded shadow-sm">
+                            <button type="button" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border-0" onclick="deleteFoto(this, <?= $alat['id_alat'] ?>, <?= $index ?>)" style="cursor: pointer; padding: 0.35em 0.5em;">
+                                <i class="bi bi-x"></i>
+                            </button>
+                        </div>
                     <?php endforeach; 
                 else: ?>
                     <span class="text-muted small">Belum ada foto tambahan.</span>
@@ -84,4 +97,23 @@
           ]
       });
   });
+
+  function deleteFoto(btn, idAlat, index) {
+      fetch('/alat/deleteFotoLainnya/' + idAlat + '/' + index)
+      .then(response => response.json())
+      .then(res => {
+          if(res.success) {
+              let container = btn.closest('.position-relative');
+              container.style.transition = 'opacity 0.3s ease';
+              container.style.opacity = '0';
+              setTimeout(() => container.remove(), 300);
+          } else {
+              alert('Gagal menghapus foto.');
+          }
+      })
+      .catch(error => {
+          console.error(error);
+          alert('Terjadi kesalahan server.');
+      });
+  }
 </script>

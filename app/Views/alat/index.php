@@ -25,7 +25,7 @@
                     </td>
                     <td class="fw-medium"><?= esc($a['nama_alat']) ?></td>
                     <td><span class="badge bg-info text-dark"><?= esc($a['nama_kategori']) ?></span></td>
-                    <td><small class="text-muted text-truncate d-inline-block" style="max-width: 200px;"><?= esc($a['deskripsi']) ?></small></td>
+                    <td><small class="text-muted text-truncate d-inline-block" style="max-width: 200px;"><?= esc(strip_tags($a['deskripsi'])) ?></small></td>
                     <td>
                         <?php if($a['is_hidden']): ?>
                             <span class="badge bg-secondary"><i class="bi bi-eye-slash me-1"></i> Disembunyikan</span>
