@@ -45,6 +45,9 @@ $RECYCLE.BIN/
 .vagrant
 Vagrantfile
 Diagram_UML.md
+public/uploads
+Deployment_Diagram.html
+
 
 #-------------------------
 # Temporary Files
