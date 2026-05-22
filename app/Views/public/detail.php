@@ -543,9 +543,9 @@
         </div>
         <div class="d-flex flex-grow-1 align-items-center justify-content-between px-3">
             <div class="nav-links d-flex">
-                <a href="/" class="active">HOME</a>
-                <a href="#about">ABOUT US</a>
-                <a href="#contact">CONTACT US</a>
+                <a href="/">HOME</a>
+                <a href="/about">ABOUT US</a>
+                <a href="/contact">CONTACT US</a>
             </div>
             <div class="top-nav-right d-flex align-items-center">
                 <?php if(session()->get('logged_in')): ?>
@@ -746,8 +746,8 @@
                 <div class="footer-nav">
                     <h5>Navigation</h5>
                     <a href="/">Home</a>
-                    <a href="#about">About Us</a>
-                    <a href="#contact">Contact Us</a>
+                    <a href="/about">About Us</a>
+                    <a href="/contact">Contact Us</a>
                     <a href="#products">Products</a>
                 </div>
             </div>

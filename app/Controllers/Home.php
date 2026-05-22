@@ -71,4 +71,41 @@ class Home extends BaseController
         
         return view('public/detail', $data);
     }
+
+    private function getKategoriWithAlat()
+    {
+        $alatModel = new AlatModel();
+        $kategoriModel = new KategoriModel();
+        
+        $kategoriList = $kategoriModel->where('is_hidden', 0)->findAll();
+        $alatAll = $alatModel->getAlatWithKategori(true);
+        
+        $kategoriWithAlat = [];
+        foreach($kategoriList as $k) {
+            $items = array_filter($alatAll, function($a) use ($k) {
+                return $a['id_kategori'] == $k['id_kategori'];
+            });
+            $k['items'] = $items;
+            $kategoriWithAlat[] = $k;
+        }
+        return $kategoriWithAlat;
+    }
+
+    public function about()
+    {
+        $data = [
+            'title' => 'About Us - MS-Rent',
+            'kategoriWithAlat' => $this->getKategoriWithAlat()
+        ];
+        return view('public/about', $data);
+    }
+
+    public function contact()
+    {
+        $data = [
+            'title' => 'Contact Us - MS-Rent',
+            'kategoriWithAlat' => $this->getKategoriWithAlat()
+        ];
+        return view('public/contact', $data);
+    }
 }

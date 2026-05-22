@@ -543,9 +543,9 @@
         </div>
         <div class="d-flex flex-grow-1 align-items-center justify-content-between px-3">
             <div class="nav-links d-flex">
-                <a href="/" class="active">HOME</a>
+                <a href="/">HOME</a>
                 <a href="/about">ABOUT US</a>
-                <a href="/contact">CONTACT US</a>
+                <a href="/contact" class="active">CONTACT US</a>
             </div>
             <div class="top-nav-right d-flex align-items-center">
                 <?php if(session()->get('logged_in')): ?>
@@ -623,107 +623,77 @@
 
     <!-- Main Content -->
     <div class="main-content">
-        <!-- Banner Carousel -->
-        <div class="hero-banner">
-            <div class="banner-text">
-                <h1>High Quality Equipment Rentals</h1>
-                <p>MS-Rent provides professional gear for your production and event needs. Featuring our top-tier collections ready to deploy.</p>
-                <div class="mt-4">
-                    <span class="badge bg-white text-dark border p-2 me-2 shadow-sm">Kamera</span>
-                    <span class="badge bg-white text-dark border p-2 me-2 shadow-sm">Sound System</span>
-                    <span class="badge bg-white text-dark border p-2 shadow-sm">Lighting</span>
-                </div>
-            </div>
-            <!-- Decorative Graphic -->
-            <div style="position: absolute; right: -50px; top: 50%; transform: translateY(-50%); opacity: 0.8;">
-                 <svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M50 350 L450 100 L550 150 L150 400 Z" fill="var(--border-color)" opacity="0.5"/>
-                    <path d="M100 350 L500 100 L600 150 L200 400 Z" fill="var(--text-light)" opacity="0.1"/>
-                    <circle cx="450" cy="125" r="40" fill="var(--primary-color)" opacity="0.8"/>
-                    <circle cx="350" cy="187" r="40" fill="var(--primary-color)" opacity="0.9"/>
-                    <circle cx="250" cy="250" r="40" fill="var(--primary-color)"/>
-                 </svg>
-            </div>
-        </div>
 
-        <!-- Featured Products -->
-        <div class="featured-section">
-            <div class="section-header">
-                <h4>MS-Rent Collections</h4>
-                <h2>Featured Equipment</h2>
-                <p class="text-muted">Explore our highlighted premium gear</p>
+
+        <!-- Contact Us Section -->
+        <div id="contact" class="contact-section py-5 px-4 mt-5" style="background-color: var(--sidebar-bg);">
+            <div class="text-center mb-5">
+                <h5 class="text-primary fw-bold text-uppercase tracking-wide mb-2">Get in Touch</h5>
+                <h2 class="fw-bold" style="font-family: 'Outfit', sans-serif;">Contact Us For Any Questions</h2>
             </div>
-
-            <?php if(empty($featuredAlat)): ?>
-                <div class="text-center py-5">
-                    <i class="bi bi-box-seam text-muted" style="font-size: 4rem;"></i>
-                    <h4 class="mt-3 text-muted">Belum ada produk yang ditampilkan.</h4>
-                </div>
-            <?php else: ?>
-                <div class="row g-0 border-top border-start border-color">
-                    <?php foreach($featuredAlat as $a): ?>
-                    <div class="col-lg-4 col-md-6 border-end border-bottom border-color">
-                        <div class="product-card">
-                            
-                            <?php 
-                                $tags = isset($a['tags']) ? explode(',', strtolower($a['tags'])) : [];
-                            ?>
-                            <?php if(in_array('hot', $tags)): ?>
-                                <span class="product-badge badge-hot">HOT</span>
-                            <?php endif; ?>
-                            <?php if(in_array('sale', $tags)): ?>
-                                <span class="product-badge badge-sale" style="<?= in_array('hot', $tags) ? 'top: 45px;' : 'top: 15px;' ?>">SALE</span>
-                            <?php endif; ?>
-
-                            <div class="product-img p-0 position-relative">
-                                <?php 
-                                    $additionalFotos = !empty($a['foto_lainnya']) ? json_decode($a['foto_lainnya'], true) : [];
-                                    if(empty($additionalFotos)): 
-                                ?>
-                                    <a href="/item/<?= esc($a['id_alat']) ?>" style="padding: 20px; height: 220px; display: flex; align-items: center; justify-content: center; width: 100%;">
-                                        <img src="/uploads/<?= esc($a['foto']) ?>" alt="<?= esc($a['nama_alat']) ?>" onerror="this.src='https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=400'" style="max-height: 180px; max-width: 100%; object-fit: contain;">
-                                    </a>
-                                <?php else: 
-                                    $carouselId = 'carousel-' . $a['id_alat'];
-                                ?>
-                                    <div id="<?= $carouselId ?>" class="carousel slide" data-bs-ride="carousel" style="width: 100%;">
-                                        <div class="carousel-inner">
-                                            <div class="carousel-item active">
-                                                <a href="/item/<?= esc($a['id_alat']) ?>" style="padding: 20px; height: 220px; display: flex; align-items: center; justify-content: center; text-decoration: none;">
-                                                    <img src="/uploads/<?= esc($a['foto']) ?>" alt="<?= esc($a['nama_alat']) ?>" style="max-height: 180px; max-width: 100%; object-fit: contain;">
-                                                </a>
-                                            </div>
-                                            <?php foreach($additionalFotos as $af): ?>
-                                            <div class="carousel-item">
-                                                <a href="/item/<?= esc($a['id_alat']) ?>" style="padding: 20px; height: 220px; display: flex; align-items: center; justify-content: center; text-decoration: none;">
-                                                    <img src="/uploads/<?= esc($af) ?>" alt="<?= esc($a['nama_alat']) ?>" style="max-height: 180px; max-width: 100%; object-fit: contain;">
-                                                </a>
-                                            </div>
-                                            <?php endforeach; ?>
-                                        </div>
-                                        <button class="carousel-control-prev" type="button" data-bs-target="#<?= $carouselId ?>" data-bs-slide="prev" style="width: 15%; border-radius: 0;">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(1) grayscale(100); opacity: 0.8;"></span>
-                                        </button>
-                                        <button class="carousel-control-next" type="button" data-bs-target="#<?= $carouselId ?>" data-bs-slide="next" style="width: 15%; border-radius: 0;">
-                                            <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(1) grayscale(100); opacity: 0.8;"></span>
-                                        </button>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                        <div class="row g-0">
+                            <div class="col-md-5 bg-dark text-white p-5 d-flex flex-column justify-content-center">
+                                <h4 class="fw-bold mb-4">Contact Information</h4>
+                                <div class="d-flex mb-4">
+                                    <i class="bi bi-geo-alt-fill text-primary fs-4 me-3 mt-1"></i>
+                                    <div>
+                                        <h6 class="fw-bold mb-1">Address</h6>
+                                        <p class="text-white-50 small mb-0">[Address Placeholder 1]<br>[Address Placeholder 2]</p>
                                     </div>
-                                <?php endif; ?>
+                                </div>
+                                <div class="d-flex mb-4">
+                                    <i class="bi bi-telephone-fill text-primary fs-4 me-3 mt-1"></i>
+                                    <div>
+                                        <h6 class="fw-bold mb-1">Phone</h6>
+                                        <p class="text-white-50 small mb-0">[Phone Placeholder]</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex mb-4">
+                                    <i class="bi bi-envelope-fill text-primary fs-4 me-3 mt-1"></i>
+                                    <div>
+                                        <h6 class="fw-bold mb-1">Email</h6>
+                                        <p class="text-white-50 small mb-0">[Email Placeholder]</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <i class="bi bi-whatsapp text-primary fs-4 me-3 mt-1"></i>
+                                    <div>
+                                        <h6 class="fw-bold mb-1">WhatsApp</h6>
+                                        <p class="text-white-50 small mb-0">[WhatsApp Placeholder]</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="product-info">
-                                <h3 class="product-title"><?= esc($a['nama_alat']) ?></h3>
-                                <p class="text-muted small mb-1"><?= esc($a['nama_kategori']) ?></p>
-                                <h5 class="mb-3 fw-bold" style="color: var(--primary-color);">Rp <?= number_format(isset($a['harga']) ? $a['harga'] : 0, 0, ',', '.') ?></h5>
-                                <a href="/item/<?= esc($a['id_alat']) ?>" class="btn btn-outline-dark btn-sm text-uppercase px-4 rounded-0 fw-bold w-100">View Details</a>
+                            <div class="col-md-7 p-5 bg-white">
+                                <h4 class="fw-bold mb-4 text-dark">Send us a Message</h4>
+                                <form>
+                                    <div class="row g-3">
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control form-control-lg bg-light border-0" placeholder="Your Name" required>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="email" class="form-control form-control-lg bg-light border-0" placeholder="Your Email" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="text" class="form-control form-control-lg bg-light border-0" placeholder="Subject" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <textarea class="form-control form-control-lg bg-light border-0" rows="4" placeholder="Your Message" required></textarea>
+                                        </div>
+                                        <div class="col-12 mt-4">
+                                            <button type="submit" class="btn btn-primary btn-lg px-5 rounded-pill shadow-sm fw-bold">Send Message</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <?php endforeach; ?>
                 </div>
-            <?php endif; ?>
+            </div>
         </div>
-
-
     </div>
 </div>
 
