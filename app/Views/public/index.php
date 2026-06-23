@@ -522,7 +522,7 @@
             </div>
             <div class="col-md-6">
                 <div class="input-group search-box">
-                    <input type="text" class="form-control search-input" placeholder="Search for products...">
+                    <input type="text" class="form-control search-input" placeholder="Cari produk...">
                     <button class="btn search-btn" type="button"><i class="bi bi-search"></i></button>
                 </div>
             </div>
@@ -538,14 +538,14 @@
     <div class="container-fluid p-0" style="max-width: 1400px; display: flex;">
         <div style="width: 280px; flex-shrink: 0;">
             <div class="category-header">
-                <i class="bi bi-list fs-4 me-3"></i> BROWSE CATEGORIES
+                <i class="bi bi-list fs-4 me-3"></i> JELAJAHI KATEGORI
             </div>
         </div>
         <div class="d-flex flex-grow-1 align-items-center justify-content-between px-3">
             <div class="nav-links d-flex">
-                <a href="/" class="active">HOME</a>
-                <a href="/about">ABOUT US</a>
-                <a href="/contact">CONTACT US</a>
+                <a href="/" class="active">BERANDA</a>
+                <a href="/about">TENTANG KAMI</a>
+                <a href="/contact">HUBUNGI KAMI</a>
             </div>
             <div class="top-nav-right d-flex align-items-center">
                 <?php if(session()->get('logged_in')): ?>
@@ -632,8 +632,8 @@
         <!-- Banner Carousel -->
         <div class="hero-banner">
             <div class="banner-text">
-                <h1>High Quality Equipment Rentals</h1>
-                <p>MS-Rent provides professional gear for your production and event needs. Featuring our top-tier collections ready to deploy.</p>
+                <h1>Penyewaan Peralatan Multimedia Berkualitas Tinggi</h1>
+                <p>MS-Rent menyediakan perlengkapan profesional untuk kebutuhan produksi dan acara Anda. Kami menawarkan koleksi terbaik kami yang siap digunakan.</p>
                 <div class="mt-4">
                     <span class="badge bg-white text-dark border p-2 me-2 shadow-sm">Kamera</span>
                     <span class="badge bg-white text-dark border p-2 me-2 shadow-sm">Sound System</span>
@@ -657,7 +657,7 @@
             <div class="section-header">
                 <h4>MS-Rent Collections</h4>
                 <h2>Featured Equipment</h2>
-                <p class="text-muted">Explore our highlighted premium gear</p>
+                <p class="text-muted">Jelajahi perlengkapan premium pilihan kami</p>
             </div>
 
             <?php if(empty($featuredAlat)): ?>
@@ -720,7 +720,7 @@
                                 <h3 class="product-title"><?= esc($a['nama_alat']) ?></h3>
                                 <p class="text-muted small mb-1"><?= esc($a['nama_kategori']) ?></p>
                                 <h5 class="mb-3 fw-bold" style="color: var(--primary-color);">Rp <?= number_format(isset($a['harga']) ? $a['harga'] : 0, 0, ',', '.') ?></h5>
-                                <a href="/item/<?= esc($a['id_alat']) ?>" class="btn btn-outline-dark btn-sm text-uppercase px-4 rounded-0 fw-bold w-100">View Details</a>
+                                <a href="/item/<?= esc($a['id_alat']) ?>" class="btn btn-outline-dark btn-sm text-uppercase px-4 rounded-0 fw-bold w-100">Lihat Detail</a>
                             </div>
                         </div>
                     </div>
@@ -742,26 +742,26 @@
                     <i class="bi bi-layers-fill text-primary"></i> MS-Rent
                 </a>
                 <p style="line-height: 1.6; margin-bottom: 30px;">
-                    MS-Rent empowers the creative, production, and event industries through integrated high-quality multimedia and AV equipment rentals.
+                    MS-Rent mendukung industri kreatif, produksi, dan acara melalui layanan penyewaan peralatan multimedia dan AV terintegrasi berkualitas tinggi.
                 </p>
                 <div class="footer-info">
                     <p><i class="bi bi-geo-alt-fill"></i> Kawasan Bisnis Sudirman, Jakarta Selatan 12190</p>
-                    <p><i class="bi bi-telephone-fill"></i> PHONE : (+62) 21-1234-5678</p>
-                    <p><i class="bi bi-whatsapp"></i> WA : (+62) 812-3456-7890</p>
+                    <p><i class="bi bi-telephone-fill"></i> PHONE : (+62) 889-7333-5955</p>
+                    <p><i class="bi bi-whatsapp"></i> WA : (+62) 889-7333-5955</p>
                 </div>
             </div>
             <div class="col-lg-3 mt-4 mt-lg-0">
                 <div class="footer-nav">
-                    <h5>Navigation</h5>
-                    <a href="/">Home</a>
-                    <a href="/about">About Us</a>
-                    <a href="/contact">Contact Us</a>
-                    <a href="#products">Products</a>
+                    <h5>Navigasi</h5>
+                    <a href="/">Beranda</a>
+                    <a href="/about">Tentang Kami</a>
+                    <a href="/contact">Hubungi Kami</a>
+                    <a href="#products">Produk</a>
                 </div>
             </div>
             <div class="col-lg-4 mt-4 mt-lg-0">
                 <div class="footer-nav">
-                    <h5>Categories</h5>
+                    <h5>Kategori</h5>
                     <?php $count=0; foreach($kategoriWithAlat as $k): if($count>=4) break; ?>
                         <a href="#"><?= esc($k['nama_kategori']) ?></a>
                     <?php $count++; endforeach; ?>
@@ -769,12 +769,12 @@
             </div>
         </div>
         <div class="copyright d-flex justify-content-between align-items-center">
-            <div>&copy; <?= date('Y') ?> <strong>PT Multimedia Sistem Rent</strong>. All Rights Reserved.</div>
+            <div>&copy; <?= date('Y') ?> <strong>PT Multimedia Sistem Rent</strong>. Hak Cipta Dilindungi.</div>
         </div>
     </div>
 </div>
 
-<a href="https://wa.me/6281234567890" target="_blank" class="floating-wa">
+<a href="https://wa.me/6288973335955" target="_blank" class="floating-wa">
     <i class="bi bi-whatsapp"></i>
 </a>
 

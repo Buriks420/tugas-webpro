@@ -522,7 +522,7 @@
             </div>
             <div class="col-md-6">
                 <div class="input-group search-box">
-                    <input type="text" class="form-control search-input" placeholder="Search for products...">
+                    <input type="text" class="form-control search-input" placeholder="Cari produk...">
                     <button class="btn search-btn" type="button"><i class="bi bi-search"></i></button>
                 </div>
             </div>
@@ -538,14 +538,14 @@
     <div class="container-fluid p-0" style="max-width: 1400px; display: flex;">
         <div style="width: 280px; flex-shrink: 0;">
             <div class="category-header">
-                <i class="bi bi-list fs-4 me-3"></i> BROWSE CATEGORIES
+                <i class="bi bi-list fs-4 me-3"></i> JELAJAHI KATEGORI
             </div>
         </div>
         <div class="d-flex flex-grow-1 align-items-center justify-content-between px-3">
             <div class="nav-links d-flex">
-                <a href="/">HOME</a>
-                <a href="/about">ABOUT US</a>
-                <a href="/contact" class="active">CONTACT US</a>
+                <a href="/">BERANDA</a>
+                <a href="/about">TENTANG KAMI</a>
+                <a href="/contact" class="active">HUBUNGI KAMI</a>
             </div>
             <div class="top-nav-right d-flex align-items-center">
                 <?php if(session()->get('logged_in')): ?>
@@ -634,8 +634,8 @@
         <!-- Contact Us Section -->
         <div id="contact" class="contact-section py-5 px-4 mt-5" style="background-color: var(--sidebar-bg);">
             <div class="text-center mb-5">
-                <h5 class="text-primary fw-bold text-uppercase tracking-wide mb-2">Get in Touch</h5>
-                <h2 class="fw-bold" style="font-family: 'Outfit', sans-serif;">Contact Us For Any Questions</h2>
+                <h5 class="text-primary fw-bold text-uppercase tracking-wide mb-2">Hubungi Kami</h5>
+                <h2 class="fw-bold" style="font-family: 'Outfit', sans-serif;">Hubungi Kami Untuk Pertanyaan Apapun</h2>
             </div>
             
             <div class="row justify-content-center">
@@ -643,54 +643,54 @@
                     <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
                         <div class="row g-0">
                             <div class="col-md-5 bg-dark text-white p-5 d-flex flex-column justify-content-center">
-                                <h4 class="fw-bold mb-4">Contact Information</h4>
+                                <h4 class="fw-bold mb-4">Informasi Kontak</h4>
                                 <div class="d-flex mb-4">
                                     <i class="bi bi-geo-alt-fill text-primary fs-4 me-3 mt-1"></i>
                                     <div>
-                                        <h6 class="fw-bold mb-1">Address</h6>
-                                        <p class="text-white-50 small mb-0">[Address Placeholder 1]<br>[Address Placeholder 2]</p>
+                                        <h6 class="fw-bold mb-1">Alamat</h6>
+                                        <p class="text-white-50 small mb-0">Kawasan Bisnis Sudirman, Jakarta Selatan 12190</p>
                                     </div>
                                 </div>
                                 <div class="d-flex mb-4">
                                     <i class="bi bi-telephone-fill text-primary fs-4 me-3 mt-1"></i>
                                     <div>
-                                        <h6 class="fw-bold mb-1">Phone</h6>
-                                        <p class="text-white-50 small mb-0">[Phone Placeholder]</p>
+                                        <h6 class="fw-bold mb-1">Telepon</h6>
+                                        <p class="text-white-50 small mb-0">088973335955</p>
                                     </div>
                                 </div>
                                 <div class="d-flex mb-4">
                                     <i class="bi bi-envelope-fill text-primary fs-4 me-3 mt-1"></i>
                                     <div>
                                         <h6 class="fw-bold mb-1">Email</h6>
-                                        <p class="text-white-50 small mb-0">[Email Placeholder]</p>
+                                        <p class="text-white-50 small mb-0">ms.rental.indonesia@gmail.com</p>
                                     </div>
                                 </div>
                                 <div class="d-flex">
                                     <i class="bi bi-whatsapp text-primary fs-4 me-3 mt-1"></i>
                                     <div>
                                         <h6 class="fw-bold mb-1">WhatsApp</h6>
-                                        <p class="text-white-50 small mb-0">[WhatsApp Placeholder]</p>
+                                        <p class="text-white-50 small mb-0">088973335955</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-7 p-5 bg-white">
-                                <h4 class="fw-bold mb-4 text-dark">Send us a Message</h4>
+                                <h4 class="fw-bold mb-4 text-dark">Kirimkan Pesan</h4>
                                 <form>
                                     <div class="row g-3">
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control form-control-lg bg-light border-0" placeholder="Your Name" required>
+                                            <input type="text" class="form-control form-control-lg bg-light border-0" placeholder="Nama Anda" required>
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="email" class="form-control form-control-lg bg-light border-0" placeholder="Your Email" required>
+                                            <input type="email" class="form-control form-control-lg bg-light border-0" placeholder="Email Anda" required>
                                         </div>
                                         <div class="col-12">
-                                            <input type="text" class="form-control form-control-lg bg-light border-0" placeholder="Subject" required>
+                                            <input type="text" class="form-control form-control-lg bg-light border-0" placeholder="Subjek" required>
                                         </div>
                                         <div class="col-12">
-                                            <textarea class="form-control form-control-lg bg-light border-0" rows="4" placeholder="Your Message" required></textarea>
+                                            <textarea class="form-control form-control-lg bg-light border-0" rows="4" placeholder="Pesan Anda" required></textarea>
                                         </div>
                                         <div class="col-12 mt-4">
-                                            <button type="submit" class="btn btn-primary btn-lg px-5 rounded-pill shadow-sm fw-bold">Send Message</button>
+                                            <button type="submit" class="btn btn-primary btn-lg px-5 rounded-pill shadow-sm fw-bold">Kirim Pesan</button>
                                         </div>
                                     </div>
                                 </form>
@@ -712,26 +712,26 @@
                     <i class="bi bi-layers-fill text-primary"></i> MS-Rent
                 </a>
                 <p style="line-height: 1.6; margin-bottom: 30px;">
-                    MS-Rent empowers the creative, production, and event industries through integrated high-quality multimedia and AV equipment rentals.
+                    MS-Rent mendukung industri kreatif, produksi, dan acara melalui layanan penyewaan peralatan multimedia dan AV terintegrasi berkualitas tinggi.
                 </p>
                 <div class="footer-info">
                     <p><i class="bi bi-geo-alt-fill"></i> Kawasan Bisnis Sudirman, Jakarta Selatan 12190</p>
-                    <p><i class="bi bi-telephone-fill"></i> PHONE : (+62) 21-1234-5678</p>
-                    <p><i class="bi bi-whatsapp"></i> WA : (+62) 812-3456-7890</p>
+                    <p><i class="bi bi-telephone-fill"></i> PHONE : (+62) 889-7333-5955</p>
+                    <p><i class="bi bi-whatsapp"></i> WA : (+62) 889-7333-5955</p>
                 </div>
             </div>
             <div class="col-lg-3 mt-4 mt-lg-0">
                 <div class="footer-nav">
-                    <h5>Navigation</h5>
-                    <a href="/">Home</a>
-                    <a href="/about">About Us</a>
-                    <a href="/contact">Contact Us</a>
-                    <a href="#products">Products</a>
+                    <h5>Navigasi</h5>
+                    <a href="/">Beranda</a>
+                    <a href="/about">Tentang Kami</a>
+                    <a href="/contact">Hubungi Kami</a>
+                    <a href="#products">Produk</a>
                 </div>
             </div>
             <div class="col-lg-4 mt-4 mt-lg-0">
                 <div class="footer-nav">
-                    <h5>Categories</h5>
+                    <h5>Kategori</h5>
                     <?php $count=0; foreach($kategoriWithAlat as $k): if($count>=4) break; ?>
                         <a href="#"><?= esc($k['nama_kategori']) ?></a>
                     <?php $count++; endforeach; ?>
@@ -739,12 +739,12 @@
             </div>
         </div>
         <div class="copyright d-flex justify-content-between align-items-center">
-            <div>&copy; <?= date('Y') ?> <strong>PT Multimedia Sistem Rent</strong>. All Rights Reserved.</div>
+            <div>&copy; <?= date('Y') ?> <strong>PT Multimedia Sistem Rent</strong>. Hak Cipta Dilindungi.</div>
         </div>
     </div>
 </div>
 
-<a href="https://wa.me/6281234567890" target="_blank" class="floating-wa">
+<a href="https://wa.me/6288973335955" target="_blank" class="floating-wa">
     <i class="bi bi-whatsapp"></i>
 </a>
 

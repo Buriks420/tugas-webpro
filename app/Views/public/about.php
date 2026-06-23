@@ -522,7 +522,7 @@
             </div>
             <div class="col-md-6">
                 <div class="input-group search-box">
-                    <input type="text" class="form-control search-input" placeholder="Search for products...">
+                    <input type="text" class="form-control search-input" placeholder="Cari produk...">
                     <button class="btn search-btn" type="button"><i class="bi bi-search"></i></button>
                 </div>
             </div>
@@ -538,14 +538,14 @@
     <div class="container-fluid p-0" style="max-width: 1400px; display: flex;">
         <div style="width: 280px; flex-shrink: 0;">
             <div class="category-header">
-                <i class="bi bi-list fs-4 me-3"></i> BROWSE CATEGORIES
+                <i class="bi bi-list fs-4 me-3"></i> JELAJAHI KATEGORI
             </div>
         </div>
         <div class="d-flex flex-grow-1 align-items-center justify-content-between px-3">
             <div class="nav-links d-flex">
-                <a href="/">HOME</a>
-                <a href="/about" class="active">ABOUT US</a>
-                <a href="/contact">CONTACT US</a>
+                <a href="/">BERANDA</a>
+                <a href="/about" class="active">TENTANG KAMI</a>
+                <a href="/contact">HUBUNGI KAMI</a>
             </div>
             <div class="top-nav-right d-flex align-items-center">
                 <?php if(session()->get('logged_in')): ?>
@@ -634,9 +634,9 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0 pe-lg-5">
                     <h5 class="text-primary fw-bold text-uppercase tracking-wide mb-2">About Us</h5>
-                    <h2 class="display-5 fw-bold mb-4" style="font-family: 'Outfit', sans-serif;">Empowering Creative Visions with Premium Gear</h2>
+                    <h2 class="display-5 fw-bold mb-4" style="font-family: 'Outfit', sans-serif;">Mewujudkan Visi Kreatif dengan Peralatan Berkualitas Tinggi</h2>
                     <p class="text-muted lead mb-4">
-                        At MS-Rent, we believe that high-quality production shouldn't be limited by access to equipment. We are your trusted partner in providing state-of-the-art multimedia, AV, and broadcasting tools for your projects.
+                        Di MS-Rent, kami percaya bahwa produksi berkualitas tinggi tidak seharusnya dibatasi oleh keterbatasan akses terhadap peralatan. Kami adalah mitra terpercaya Anda dalam menyediakan peralatan multimedia, AV, dan penyiaran terkini untuk proyek-proyek Anda.
                     </p>
                     <div class="row g-4 mt-2">
                         <div class="col-6">
@@ -663,8 +663,8 @@
                     <div class="position-relative">
                         <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=800" alt="About MS-Rent" class="img-fluid rounded-4 shadow-lg">
                         <div class="position-absolute bottom-0 start-0 bg-primary text-white p-4 rounded-4 shadow" style="transform: translate(-5%, 15%); max-width: 250px;">
-                            <h5 class="fw-bold mb-1">Our Mission</h5>
-                            <p class="small mb-0 opacity-75">To deliver the best rental experience with uncompromised quality.</p>
+                            <h5 class="fw-bold mb-1">Misi Kami</h5>
+                            <p class="small mb-0 opacity-75">Memberikan pengalaman sewa terbaik dengan kualitas peralatan yang terjamin.</p>
                         </div>
                     </div>
                 </div>
@@ -682,26 +682,26 @@
                     <i class="bi bi-layers-fill text-primary"></i> MS-Rent
                 </a>
                 <p style="line-height: 1.6; margin-bottom: 30px;">
-                    MS-Rent empowers the creative, production, and event industries through integrated high-quality multimedia and AV equipment rentals.
+                    MS-Rent mendukung industri kreatif, produksi, dan acara melalui layanan penyewaan peralatan multimedia dan AV terintegrasi berkualitas tinggi.
                 </p>
                 <div class="footer-info">
                     <p><i class="bi bi-geo-alt-fill"></i> Kawasan Bisnis Sudirman, Jakarta Selatan 12190</p>
-                    <p><i class="bi bi-telephone-fill"></i> PHONE : (+62) 21-1234-5678</p>
-                    <p><i class="bi bi-whatsapp"></i> WA : (+62) 812-3456-7890</p>
+                    <p><i class="bi bi-telephone-fill"></i> PHONE : (+62) 889-7333-5955</p>
+                    <p><i class="bi bi-whatsapp"></i> WA : (+62) 889-7333-5955</p>
                 </div>
             </div>
             <div class="col-lg-3 mt-4 mt-lg-0">
                 <div class="footer-nav">
-                    <h5>Navigation</h5>
-                    <a href="/">Home</a>
-                    <a href="/about">About Us</a>
-                    <a href="/contact">Contact Us</a>
-                    <a href="#products">Products</a>
+                    <h5>Navigasi</h5>
+                    <a href="/">Beranda</a>
+                    <a href="/about">Tentang Kami</a>
+                    <a href="/contact">Hubungi Kami</a>
+                    <a href="#products">Produk</a>
                 </div>
             </div>
             <div class="col-lg-4 mt-4 mt-lg-0">
                 <div class="footer-nav">
-                    <h5>Categories</h5>
+                    <h5>Kategori</h5>
                     <?php $count=0; foreach($kategoriWithAlat as $k): if($count>=4) break; ?>
                         <a href="#"><?= esc($k['nama_kategori']) ?></a>
                     <?php $count++; endforeach; ?>
@@ -709,12 +709,12 @@
             </div>
         </div>
         <div class="copyright d-flex justify-content-between align-items-center">
-            <div>&copy; <?= date('Y') ?> <strong>PT Multimedia Sistem Rent</strong>. All Rights Reserved.</div>
+            <div>&copy; <?= date('Y') ?> <strong>PT Multimedia Sistem Rent</strong>. Hak Cipta Dilindungi.</div>
         </div>
     </div>
 </div>
 
-<a href="https://wa.me/6281234567890" target="_blank" class="floating-wa">
+<a href="https://wa.me/6288973335955" target="_blank" class="floating-wa">
     <i class="bi bi-whatsapp"></i>
 </a>
 

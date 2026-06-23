@@ -522,7 +522,7 @@
             </div>
             <div class="col-md-6">
                 <div class="input-group search-box">
-                    <input type="text" class="form-control search-input" placeholder="Search for products...">
+                    <input type="text" class="form-control search-input" placeholder="Cari produk...">
                     <button class="btn search-btn" type="button"><i class="bi bi-search"></i></button>
                 </div>
             </div>
@@ -538,14 +538,14 @@
     <div class="container-fluid p-0" style="max-width: 1400px; display: flex;">
         <div style="width: 280px; flex-shrink: 0;">
             <div class="category-header">
-                <i class="bi bi-list fs-4 me-3"></i> BROWSE CATEGORIES
+                <i class="bi bi-list fs-4 me-3"></i> JELAJAHI KATEGORI
             </div>
         </div>
         <div class="d-flex flex-grow-1 align-items-center justify-content-between px-3">
             <div class="nav-links d-flex">
-                <a href="/">HOME</a>
-                <a href="/about">ABOUT US</a>
-                <a href="/contact">CONTACT US</a>
+                <a href="/">BERANDA</a>
+                <a href="/about">TENTANG KAMI</a>
+                <a href="/contact">HUBUNGI KAMI</a>
             </div>
             <div class="top-nav-right d-flex align-items-center">
                 <?php if(session()->get('logged_in')): ?>
@@ -608,7 +608,7 @@
                             <?php if(!empty($k['items'])): ?>
                                 <div class="mega-menu-grid">
                                     <?php foreach($k['items'] as $item): ?>
-                                        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20menyewa%20<?= urlencode($item['nama_alat']) ?>" class="mega-item text-decoration-none" target="_blank">
+                                        <a href="https://wa.me/6288973335955?text=Halo,%20saya%20tertarik%20menyewa%20<?= urlencode($item['nama_alat']) ?>" class="mega-item text-decoration-none" target="_blank">
                                             <img src="/uploads/<?= esc($item['foto']) ?>" alt="<?= esc($item['nama_alat']) ?>" onerror="this.src='https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=200'">
                                             <span class="mega-item-name"><?= esc($item['nama_alat']) ?></span>
                                             <span class="text-primary fw-bold text-center mt-1" style="font-size:0.85rem;">Rp <?= number_format(isset($item['harga']) ? $item['harga'] : 0, 0, ',', '.') ?></span>
@@ -706,7 +706,7 @@
                     </div>
 
                     <div class="action-block mb-5 mt-4">
-                        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20menyewa%20<?= urlencode($alat['nama_alat']) ?>" target="_blank" class="btn btn-success btn-lg w-100 rounded-pill fw-bold shadow-sm d-flex align-items-center justify-content-center py-3" style="font-size: 1.1rem; transition: transform 0.2s;">
+                        <a href="https://wa.me/6288973335955?text=Halo,%20saya%20tertarik%20menyewa%20<?= urlencode($alat['nama_alat']) ?>" target="_blank" class="btn btn-success btn-lg w-100 rounded-pill fw-bold shadow-sm d-flex align-items-center justify-content-center py-3" style="font-size: 1.1rem; transition: transform 0.2s;">
                             <i class="bi bi-whatsapp fs-4 me-3"></i> Reserve via WhatsApp
                         </a>
                         <p class="text-center text-muted small mt-3"><i class="bi bi-clock-history me-1"></i> Fast response during business hours (09:00 - 18:00)</p>
@@ -750,16 +750,16 @@
             </div>
             <div class="col-lg-3 mt-4 mt-lg-0">
                 <div class="footer-nav">
-                    <h5>Navigation</h5>
-                    <a href="/">Home</a>
-                    <a href="/about">About Us</a>
-                    <a href="/contact">Contact Us</a>
-                    <a href="#products">Products</a>
+                    <h5>Navigasi</h5>
+                    <a href="/">Beranda</a>
+                    <a href="/about">Tentang Kami</a>
+                    <a href="/contact">Hubungi Kami</a>
+                    <a href="#products">Produk</a>
                 </div>
             </div>
             <div class="col-lg-4 mt-4 mt-lg-0">
                 <div class="footer-nav">
-                    <h5>Categories</h5>
+                    <h5>Kategori</h5>
                     <?php $count=0; foreach($kategoriWithAlat as $k): if($count>=4) break; ?>
                         <a href="#"><?= esc($k['nama_kategori']) ?></a>
                     <?php $count++; endforeach; ?>
@@ -767,12 +767,12 @@
             </div>
         </div>
         <div class="copyright d-flex justify-content-between align-items-center">
-            <div>&copy; <?= date('Y') ?> <strong>PT Multimedia Sistem Rent</strong>. All Rights Reserved.</div>
+            <div>&copy; <?= date('Y') ?> <strong>PT Multimedia Sistem Rent</strong>. Hak Cipta Dilindungi.</div>
         </div>
     </div>
 </div>
 
-<a href="https://wa.me/6281234567890" target="_blank" class="floating-wa">
+<a href="https://wa.me/6288973335955" target="_blank" class="floating-wa">
     <i class="bi bi-whatsapp"></i>
 </a>
 
