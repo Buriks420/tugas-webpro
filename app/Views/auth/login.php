@@ -11,6 +11,7 @@
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #f97316 0%, #431407 100%);
+            background-attachment: fixed;
             min-height: 100vh;
             padding: 50px 0;
             position: relative;
@@ -21,7 +22,7 @@
         /* Decorative Background Circles */
         body::before, body::after {
             content: '';
-            position: absolute;
+            position: fixed;
             width: 500px;
             height: 500px;
             border-radius: 50%;
@@ -71,12 +72,7 @@
             font-size: 32px;
             margin: 0 auto 20px;
             box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4);
-            transform: rotate(-10deg);
             transition: transform 0.3s ease;
-        }
-        
-        .login-card:hover .icon-bg {
-            transform: rotate(0deg);
         }
 
         .login-header h3 {
@@ -171,8 +167,8 @@
                 <div class="icon-bg">
                     <i class="bi bi-person-circle"></i>
                 </div>
-                <h4 class="fw-bold mb-1">LOGIN</h4>
-                <p class="text-muted small">Welcome back! Please login to your account.</p>
+                <h4 class="fw-bold mb-1">MASUK</h4>
+                <p class="text-muted small">Selamat datang kembali! Silakan masuk ke akun Anda.</p>
             </div>
 
             <?php if(session()->getFlashdata('msg')):?>
@@ -196,19 +192,19 @@
                 </div>
                 
                 <div class="form-floating mb-4 position-relative">
-                    <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
-                    <label for="password">Password</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Kata Sandi" required>
+                    <label for="password">Kata Sandi</label>
                     <i class="bi bi-lock input-icon"></i>
                 </div>
 
                 <button type="submit" class="btn btn-login w-100 mb-3">
-                    <i class="bi bi-box-arrow-in-right me-2"></i>Login
+                    <i class="bi bi-box-arrow-in-right me-2"></i>Masuk
                 </button>
             </form>
             
             <div class="text-center mt-3 back-home">
-                <p class="mb-1 text-muted small">Don't have an account? <a href="/auth/register" class="fw-bold">Register Here</a></p>
-                <a href="/"><i class="bi bi-arrow-left me-1"></i>Back to Homepage</a>
+                <p class="mb-1 text-muted small">Belum punya akun? <a href="/auth/register" class="fw-bold">Daftar Di Sini</a></p>
+                <a href="/"><i class="bi bi-arrow-left me-1"></i>Kembali ke Beranda</a>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

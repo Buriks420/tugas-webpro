@@ -11,6 +11,7 @@
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #f97316 0%, #431407 100%);
+            background-attachment: fixed;
             min-height: 100vh;
             padding: 50px 0;
             position: relative;
@@ -21,7 +22,7 @@
         /* Decorative Background Circles */
         body::before, body::after {
             content: '';
-            position: absolute;
+            position: fixed;
             width: 500px;
             height: 500px;
             border-radius: 50%;
@@ -71,12 +72,7 @@
             font-size: 32px;
             margin: 0 auto 20px;
             box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4);
-            transform: rotate(-10deg);
             transition: transform 0.3s ease;
-        }
-        
-        .login-card:hover .icon-bg {
-            transform: rotate(0deg);
         }
 
         .login-header h3 {
@@ -171,8 +167,8 @@
                 <div class="icon-bg">
                     <i class="bi bi-person-plus"></i>
                 </div>
-                <h4 class="fw-bold mb-1">REGISTER</h4>
-                <p class="text-muted small">Create your account to start renting</p>
+                <h4 class="fw-bold mb-1">DAFTAR</h4>
+                <p class="text-muted small">Buat akun Anda untuk mulai menyewa</p>
             </div>
 
             <?php if(session()->getFlashdata('validation')):?>
@@ -188,8 +184,8 @@
 
             <form action="/auth/processRegister" method="post">
                 <div class="form-floating mb-4 position-relative">
-                    <input type="text" name="nama_lengkap" class="form-control" id="nama_lengkap" placeholder="First & Last Name" value="<?= old('nama_lengkap') ?>" required>
-                    <label for="nama_lengkap">First & Last Name</label>
+                    <input type="text" name="nama_lengkap" class="form-control" id="nama_lengkap" placeholder="Nama Lengkap" value="<?= old('nama_lengkap') ?>" required>
+                    <label for="nama_lengkap">Nama Lengkap</label>
                     <i class="bi bi-person-badge input-icon"></i>
                 </div>
 
@@ -200,31 +196,31 @@
                 </div>
                 
                 <div class="form-floating mb-4 position-relative">
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Email Address" value="<?= old('email') ?>" required>
-                    <label for="email">Email Address</label>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Alamat Email" value="<?= old('email') ?>" required>
+                    <label for="email">Alamat Email</label>
                     <i class="bi bi-envelope input-icon"></i>
                 </div>
                 
                 <div class="form-floating mb-4 position-relative">
-                    <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
-                    <label for="password">Password</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Kata Sandi" required>
+                    <label for="password">Kata Sandi</label>
                     <i class="bi bi-lock input-icon"></i>
                 </div>
                 
                 <div class="form-floating mb-4 position-relative">
-                    <input type="password" name="pass_confirm" class="form-control" id="pass_confirm" placeholder="Confirm Password" required>
-                    <label for="pass_confirm">Confirm Password</label>
+                    <input type="password" name="pass_confirm" class="form-control" id="pass_confirm" placeholder="Konfirmasi Kata Sandi" required>
+                    <label for="pass_confirm">Konfirmasi Kata Sandi</label>
                     <i class="bi bi-lock-fill input-icon"></i>
                 </div>
 
                 <button type="submit" class="btn btn-login w-100 mb-3">
-                    <i class="bi bi-person-plus-fill me-2"></i>Create Account
+                    <i class="bi bi-person-plus-fill me-2"></i>Buat Akun
                 </button>
             </form>
             
             <div class="text-center mt-3 back-home">
-                <p class="mb-1 text-muted small">Already have an account? <a href="/auth" class="fw-bold">Login Here</a></p>
-                <a href="/"><i class="bi bi-arrow-left me-1"></i>Back to Homepage</a>
+                <p class="mb-1 text-muted small">Sudah punya akun? <a href="/auth" class="fw-bold">Masuk di Sini</a></p>
+                <a href="/"><i class="bi bi-arrow-left me-1"></i>Kembali ke Beranda</a>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
