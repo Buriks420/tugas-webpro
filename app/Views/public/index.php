@@ -6,7 +6,7 @@
     <title><?= esc($title) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
     <style>
         :root {
             /* Brand Colors */
@@ -590,9 +590,15 @@
                                 if(strpos($lowerName, 'kamera') !== false) $icon = 'bi-camera-video';
                                 elseif(strpos($lowerName, 'lensa') !== false) $icon = 'bi-camera';
                                 elseif(strpos($lowerName, 'sound') !== false) $icon = 'bi-speaker';
-                                elseif(strpos($lowerName, 'proyektor') !== false) $icon = 'bi-projector';
+                                elseif(strpos($lowerName, 'proyektor') !== false || strpos($lowerName, 'projector') !== false) $icon = 'bi-projector';
                                 elseif(strpos($lowerName, 'lighting') !== false) $icon = 'bi-lightbulb';
-                                elseif(strpos($lowerName, 'komunikasi') !== false || strpos($lowerName, 'ht') !== false) $icon = 'bi-headset';
+                                elseif(strpos($lowerName, 'komunikasi') !== false || strpos($lowerName, 'communication') !== false || strpos($lowerName, 'ht') !== false) $icon = 'bi-headset';
+                                elseif(strpos($lowerName, 'music') !== false || strpos($lowerName, 'musik') !== false) $icon = 'bi-music-note-beamed';
+                                elseif(strpos($lowerName, 'wireless') !== false || strpos($lowerName, 'control') !== false) $icon = 'bi-broadcast';
+                                elseif(strpos($lowerName, 'monitor') !== false || strpos($lowerName, 'tv') !== false) $icon = 'bi-tv';
+                                elseif(strpos($lowerName, 'videotron') !== false || strpos($lowerName, 'led') !== false) $icon = 'bi-grid-3x3';
+                                elseif(strpos($lowerName, 'rig') !== false || strpos($lowerName, 'stabilizer') !== false) $icon = 'bi-arrows-move';
+                                elseif(strpos($lowerName, 'tripod') !== false || strpos($lowerName, 'monopod') !== false) $icon = 'bi-triangle';
                             ?>
                             <i class="bi <?= $icon ?>"></i> <?= esc($k['nama_kategori']) ?>
                         </a>

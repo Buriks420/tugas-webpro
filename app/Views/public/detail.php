@@ -590,9 +590,15 @@
                                 if(strpos($lowerName, 'kamera') !== false) $icon = 'bi-camera-video';
                                 elseif(strpos($lowerName, 'lensa') !== false) $icon = 'bi-camera';
                                 elseif(strpos($lowerName, 'sound') !== false) $icon = 'bi-speaker';
-                                elseif(strpos($lowerName, 'proyektor') !== false) $icon = 'bi-projector';
+                                elseif(strpos($lowerName, 'proyektor') !== false || strpos($lowerName, 'projector') !== false) $icon = 'bi-projector';
                                 elseif(strpos($lowerName, 'lighting') !== false) $icon = 'bi-lightbulb';
-                                elseif(strpos($lowerName, 'komunikasi') !== false || strpos($lowerName, 'ht') !== false) $icon = 'bi-headset';
+                                elseif(strpos($lowerName, 'komunikasi') !== false || strpos($lowerName, 'communication') !== false || strpos($lowerName, 'ht') !== false) $icon = 'bi-headset';
+                                elseif(strpos($lowerName, 'music') !== false || strpos($lowerName, 'musik') !== false) $icon = 'bi-music-note-beamed';
+                                elseif(strpos($lowerName, 'wireless') !== false || strpos($lowerName, 'control') !== false) $icon = 'bi-broadcast';
+                                elseif(strpos($lowerName, 'monitor') !== false || strpos($lowerName, 'tv') !== false) $icon = 'bi-tv';
+                                elseif(strpos($lowerName, 'videotron') !== false || strpos($lowerName, 'led') !== false) $icon = 'bi-grid-3x3';
+                                elseif(strpos($lowerName, 'rig') !== false || strpos($lowerName, 'stabilizer') !== false) $icon = 'bi-arrows-move';
+                                elseif(strpos($lowerName, 'tripod') !== false || strpos($lowerName, 'monopod') !== false) $icon = 'bi-triangle';
                             ?>
                             <i class="bi <?= $icon ?>"></i> <?= esc($k['nama_kategori']) ?>
                         </a>
