@@ -39,6 +39,12 @@ $routes->get('/alat/toggleHide/(:num)', 'Alat::toggleHide/$1');
 $routes->get('/penyewa', 'Penyewa::index');
 $routes->get('/penyewa/create', 'Penyewa::create');
 $routes->post('/penyewa/store', 'Penyewa::store');
+$routes->get('/penyewa/createUser', 'Penyewa::createUser');
+$routes->post('/penyewa/storeUser', 'Penyewa::storeUser');
+$routes->get('/penyewa/edit/(:segment)/(:num)', 'Penyewa::edit/$1/$2');
+$routes->post('/penyewa/update/(:segment)/(:num)', 'Penyewa::update/$1/$2');
+$routes->get('/penyewa/delete/(:segment)/(:num)', 'Penyewa::delete/$1/$2');
+$routes->get('/penyewa/toggleRole/(:num)', 'Penyewa::toggleRole/$1');
 
 $routes->get('/transaksi', 'Transaksi::index');
 $routes->get('/transaksi/create', 'Transaksi::create');

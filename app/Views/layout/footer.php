@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
         data: {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
             datasets: [{
-                label: 'Visitors',
+                label: 'Pengunjung',
                 data: [150, 200, 180, 250, 300, 280],
                 borderColor: '#007bff',
                 tension: 0.1,
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
         data: {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
             datasets: [{
-                label: 'Rentals',
+                label: 'Penyewa',
                 data: [45, 60, 50, 80, 120, 95],
                 backgroundColor: '#28a745'
             }]

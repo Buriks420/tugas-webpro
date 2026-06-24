@@ -46,27 +46,7 @@ $RECYCLE.BIN/
 Vagrantfile
 Diagram_UML.md
 public/uploads
-Deployment_Diagram.html
-current_edit_page.html
-Activity-Diagram.png
-add_bab4.py
-Class_Diagram.png
-convert_hyperlinks.py
-Deployment-Diagram.png
-erd.png
-fix_formatting.py
-Laporan_APPL.docx
-lrs.png
-prepend_sections.py
-replace_toc.py
-Sequence-Diagram_Kelola-Profil-Upload-Avatar.png
-Sequence-Diagram_Tambah-Data-Transaksi.png
-Spesifikasi-File_Alat.png
-Spesifikasi-File_Users.png
-Spesifikasi-File_Penyewa.png
-Spesifikasi-File_Kategori.png
-Spesifikasi-File_Transaksi.png
-Use-Case-Diagram.png
+
 
 #-------------------------
 # Temporary Files
