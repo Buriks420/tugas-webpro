@@ -13,7 +13,6 @@ class Dashboard extends BaseController
         $penyewaModel = new PenyewaModel();
         $transaksiModel = new TransaksiModel();
 
-        // Retrieve 5 most recent transactions
         $recent_transaksi = $transaksiModel->select('transaksi.*, alat.nama_alat, penyewa.nama_penyewa')
                     ->join('alat', 'alat.id_alat = transaksi.id_alat')
                     ->join('penyewa', 'penyewa.id_penyewa = transaksi.id_penyewa')

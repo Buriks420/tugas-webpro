@@ -16,7 +16,7 @@ class Penyewa extends BaseController
     {
         $userModel = new \App\Models\UserModel();
         $renters = $this->penyewaModel->findAll();
-        $users = $userModel->findAll(); // fetch all users
+        $users = $userModel->findAll(); 
 
         $pengguna = [];
         foreach($renters as $r) {
@@ -27,7 +27,7 @@ class Penyewa extends BaseController
                 'nama' => $r['nama_penyewa'],
                 'kontak' => $r['kontak'],
                 'info' => $r['alamat'],
-                'is_admin' => null // penyewa doesn't have roles
+                'is_admin' => null
             ];
         }
         foreach($users as $u) {
@@ -130,7 +130,6 @@ class Penyewa extends BaseController
             ]);
         } else if ($type === 'user') {
             $userModel = new \App\Models\UserModel();
-            // Don't update password here, only profile info & role
             $updateData = [
                 'nama_lengkap' => $this->request->getVar('nama_lengkap'),
                 'username' => $this->request->getVar('username'),

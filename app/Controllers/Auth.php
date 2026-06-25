@@ -21,14 +21,11 @@ class Auth extends BaseController
         $loginInput = $this->request->getVar('username'); // Can be email or username
         $password = $this->request->getVar('password');
 
-        // Check if input is email or username
         $user = $userModel->where('email', $loginInput)
                           ->orWhere('username', $loginInput)
                           ->first();
 
         if ($user) {
-            // Verify password
-            // First check if it's a plain text password from the old admin system
             if ($password === $user['password'] || password_verify($password, $user['password'])) {
                 $ses_data = [
                     'id' => $user['id'],
@@ -117,7 +114,6 @@ class Auth extends BaseController
             'email'        => "required|valid_email|is_unique[users.email,id,{$id}]"
         ];
 
-        // Only validate password if user attempts to change it
         if (!empty($this->request->getVar('password'))) {
             $rules['password'] = 'min_length[6]';
             $rules['pass_confirm'] = 'matches[password]';
@@ -138,8 +134,6 @@ class Auth extends BaseController
         }
 
         $userModel->update($id, $updateData);
-        
-        // Update session
         $session->set([
             'email' => $updateData['email'],
             'nama_lengkap' => $updateData['nama_lengkap']

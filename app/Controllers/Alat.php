@@ -98,7 +98,6 @@ class Alat extends BaseController
         } else {
             $namaFoto = $fileFoto->getRandomName();
             $fileFoto->move('uploads', $namaFoto);
-            // Optionally delete old photo: unlink('uploads/' . $alatLama['foto']);
         }
         
         $tags = $this->request->getVar('tags') ? implode(',', $this->request->getVar('tags')) : '';
@@ -138,16 +137,13 @@ class Alat extends BaseController
             if (array_key_exists($index, $fotoLainnya)) {
                 $filename = $fotoLainnya[$index];
                 
-                // Delete from filesystem
                 if (file_exists('uploads/' . $filename)) {
                     unlink('uploads/' . $filename);
                 }
                 
-                // Remove from array and reindex
                 unset($fotoLainnya[$index]);
                 $fotoLainnya = array_values($fotoLainnya);
                 
-                // Update DB
                 $this->alatModel->update($id, [
                     'foto_lainnya' => json_encode($fotoLainnya)
                 ]);
