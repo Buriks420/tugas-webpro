@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile | MS-Rent</title>
+    <title>Profil | MS-Rent</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -80,7 +80,7 @@
                     <i class="bi bi-person-fill"></i>
                 </div>
                 <h4 class="fw-bold mb-1"><?= esc($user['nama_lengkap']) ?></h4>
-                <p class="text-muted small">Update your profile information</p>
+                <p class="text-muted small">Perbarui informasi profil Anda</p>
             </div>
 
             <?php if(session()->getFlashdata('validation')):?>
@@ -102,36 +102,36 @@
         <?php endif;?>
 
             <div class="form-floating mb-4 position-relative">
-                <input type="text" name="nama_lengkap" class="form-control" id="nama_lengkap" placeholder="First & Last Name" value="<?= esc($user['nama_lengkap']) ?>" required>
-                <label for="nama_lengkap">First & Last Name</label>
+                <input type="text" name="nama_lengkap" class="form-control" id="nama_lengkap" placeholder="Nama Lengkap" value="<?= esc($user['nama_lengkap']) ?>" required>
+                <label for="nama_lengkap">Nama Lengkap</label>
                 <i class="bi bi-person-badge input-icon"></i>
             </div>
             
             <div class="form-floating mb-4 position-relative">
-                <input type="email" name="email" class="form-control" id="email" placeholder="Email Address" value="<?= esc($user['email']) ?>" required>
-                <label for="email">Email Address</label>
+                <input type="email" name="email" class="form-control" id="email" placeholder="Alamat Email" value="<?= esc($user['email']) ?>" required>
+                <label for="email">Alamat Email</label>
                 <i class="bi bi-envelope input-icon"></i>
             </div>
             
             <div class="form-floating mb-4 position-relative">
-                <input type="password" name="password" class="form-control" id="password" placeholder="New Password">
-                <label for="password">New Password (leave blank to keep)</label>
+                <input type="password" name="password" class="form-control" id="password" placeholder="Kata Sandi Baru">
+                <label for="password">Kata Sandi Baru (kosongkan jika tidak diubah)</label>
                 <i class="bi bi-lock input-icon"></i>
             </div>
             
             <div class="form-floating mb-4 position-relative">
-                <input type="password" name="pass_confirm" class="form-control" id="pass_confirm" placeholder="Confirm Password">
-                <label for="pass_confirm">Confirm New Password</label>
+                <input type="password" name="pass_confirm" class="form-control" id="pass_confirm" placeholder="Konfirmasi Kata Sandi Baru">
+                <label for="pass_confirm">Konfirmasi Kata Sandi Baru</label>
                 <i class="bi bi-lock-fill input-icon"></i>
             </div>
 
             <button type="submit" class="btn btn-update w-100 mb-3">
-                <i class="bi bi-save me-2"></i>Save Changes
+                <i class="bi bi-save me-2"></i>Simpan Perubahan
             </button>
         </form>
         
         <div class="text-center mt-3">
-            <a href="/" class="text-decoration-none text-muted"><i class="bi bi-arrow-left me-1"></i>Back to Homepage</a>
+            <a href="/" class="text-decoration-none text-muted"><i class="bi bi-arrow-left me-1"></i>Kembali ke Beranda</a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

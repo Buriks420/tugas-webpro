@@ -167,7 +167,7 @@
             background: var(--sidebar-bg);
             border-right: 1px solid var(--border-color);
             position: relative; /* Key for absolute mega menu */
-            z-index: 10;
+            z-index: 1050;
         }
 
         .sidebar-menu {
@@ -521,10 +521,7 @@
                 </a>
             </div>
             <div class="col-md-6">
-                <div class="input-group search-box">
-                    <input type="text" class="form-control search-input" placeholder="Cari produk...">
-                    <button class="btn search-btn" type="button"><i class="bi bi-search"></i></button>
-                </div>
+                <!-- Search box removed -->
             </div>
             <div class="col-md-3 text-end d-none d-md-block">
                 <!-- Additional top header items -->
