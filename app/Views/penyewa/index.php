@@ -1,5 +1,15 @@
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2>Data Pengguna</h2>
+    <div class="d-flex align-items-center gap-3">
+        <h2 class="mb-0">Data Pengguna</h2>
+        <form action="/penyewa" method="get" class="m-0">
+            <select name="role_filter" class="form-select" onchange="this.form.submit()" style="min-width: 150px; cursor: pointer;">
+                <option value="User Register" <?= $current_filter == 'User Register' ? 'selected' : '' ?>>User Register</option>
+                <option value="Admin" <?= $current_filter == 'Admin' ? 'selected' : '' ?>>Admin</option>
+                <option value="Penyewa" <?= $current_filter == 'Penyewa' ? 'selected' : '' ?>>Penyewa</option>
+                <option value="All" <?= $current_filter == 'All' ? 'selected' : '' ?>>Semua Data</option>
+            </select>
+        </form>
+    </div>
     <div>
         <a href="/penyewa/create" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i> Tambah Penyewa</a>
         <a href="/penyewa/createUser" class="btn btn-success"><i class="bi bi-person-plus me-1"></i> Tambah Akun User</a>

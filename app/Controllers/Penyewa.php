@@ -14,37 +14,47 @@ class Penyewa extends BaseController
 
     public function index()
     {
+        $filter = $this->request->getVar('role_filter') ?? 'User Register';
+        
         $userModel = new \App\Models\UserModel();
         $renters = $this->penyewaModel->findAll();
         $users = $userModel->findAll(); 
 
         $pengguna = [];
-        foreach($renters as $r) {
-            $pengguna[] = [
-                'tipe' => 'Penyewa',
-                'type_id' => 'penyewa',
-                'id' => $r['id_penyewa'],
-                'nama' => $r['nama_penyewa'],
-                'kontak' => $r['kontak'],
-                'info' => $r['alamat'],
-                'is_admin' => null
-            ];
+        
+        if ($filter === 'Penyewa' || $filter === 'All') {
+            foreach($renters as $r) {
+                $pengguna[] = [
+                    'tipe' => 'Penyewa',
+                    'type_id' => 'penyewa',
+                    'id' => $r['id_penyewa'],
+                    'nama' => $r['nama_penyewa'],
+                    'kontak' => $r['kontak'],
+                    'info' => $r['alamat'],
+                    'is_admin' => null
+                ];
+            }
         }
+        
         foreach($users as $u) {
-            $pengguna[] = [
-                'tipe' => 'User Register',
-                'type_id' => 'user',
-                'id' => $u['id'],
-                'nama' => $u['nama_lengkap'],
-                'kontak' => $u['email'],
-                'info' => 'Username: ' . $u['username'],
-                'is_admin' => $u['is_admin']
-            ];
+            $type = $u['is_admin'] ? 'Admin' : 'User Register';
+            if ($filter === 'All' || $filter === $type) {
+                $pengguna[] = [
+                    'tipe' => $type,
+                    'type_id' => 'user',
+                    'id' => $u['id'],
+                    'nama' => $u['nama_lengkap'],
+                    'kontak' => $u['email'],
+                    'info' => 'Username: ' . $u['username'],
+                    'is_admin' => $u['is_admin']
+                ];
+            }
         }
 
         $data = [
             'title' => 'Data Pengguna',
-            'pengguna' => $pengguna
+            'pengguna' => $pengguna,
+            'current_filter' => $filter
         ];
 
         echo view('layout/header', $data);
